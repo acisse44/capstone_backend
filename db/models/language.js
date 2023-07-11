@@ -24,7 +24,7 @@ const Language= db.define("language", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  
+
 });
 
 module.exports = Language;
