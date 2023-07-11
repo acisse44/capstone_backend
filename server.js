@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require("express");
+
+//make sure you are imported the moded the database where you require the db
 const db = require("./db");
 const PORT = "8080";
 const cors = require("cors");
@@ -12,7 +14,7 @@ app.use(cors());
 //app.use("/api", require("./api"));
 
 // Syncing DB Function
-const syncDB = async () => await db.sync({force: true});
+const syncDB = () => db.sync({force: true});
 
 // Run server function
 const serverRun = () => {
@@ -20,9 +22,6 @@ const serverRun = () => {
     console.log(`Live on port: ${PORT}`);
   });
 };
-
-//syncDB();
-//serverRun();
 
 async function init() { 
   try {

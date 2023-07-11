@@ -1,15 +1,15 @@
 const { DataTypes } = require("sequelize");
-const db = require("../index.js");
+const db =  require("../db.js")
 
 //Our test table with the following attributes for each
 const Test = db.define("test", {
 
   testID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   languageID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   testName: {

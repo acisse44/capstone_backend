@@ -4,11 +4,14 @@ const { Sequelize } = require("sequelize");
 const { name } = require("../package.json");
 
 console.log(process.env.USERNAME);
-
-const db = new Sequelize(`postgres://localhost:5432/${name}`, {
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  logging: console.log,
+//creation of singleton database
+const db = new Sequelize(name, process.env.USERNAME, process.env.PASSWORD, 
+{
+  host : 'localhost',
+  logging: true,
+  dialect: 'postgres'
 
 });
+
+//make sure this is the singleton you are defining the table on
 module.exports = db;
