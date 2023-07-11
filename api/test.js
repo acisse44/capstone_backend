@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const test = await Role.findByPk(req.params.id, { include: TestQuestion });
+    const test = await Test.findByPk(req.params.id, { include: TestQuestion });
     test ? res.status(200).json(test) : res.status(404).send("Role Not Found");
   } catch (error) {
     next(error);
@@ -55,7 +55,7 @@ router.post("/", async (req, res, next) => {
 router.put("/", async (req, res, next) => {
   const { languageID, testName, difficulty, question } = req.body;
   try {
-    const test = await Test.findByPk(id);
+    const test = await Test.findByPk(req.params.id);
     if (!test) {
       return res.status(404).send("Test not found");
     }
