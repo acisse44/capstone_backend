@@ -1,5 +1,6 @@
+const db = require('../index.js');
 const User = require("./user.js");
-const Achievement= require("./achievement.js");
+const Achievement = require("./achievement.js")
 const Friend = require("./friend.js");
 const Language = require("./language.js");
 const Lesson = require("./lesson.js");

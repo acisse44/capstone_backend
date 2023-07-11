@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db");
+const db = require("../index.js");
 
 //Our Friend table with the following attributes for each
 const Friend = db.define("friend", {

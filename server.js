@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const db = require("./db");
 const PORT = "8080";
@@ -8,10 +9,10 @@ app.use(express.json());
 app.use(cors());
 
 // Mount on API
-app.use("/api", require("./api"));
+//app.use("/api", require("./api"));
 
 // Syncing DB Function
-const syncDB = () => db.sync();
+const syncDB = async () => await db.sync({force: true});
 
 // Run server function
 const serverRun = () => {
@@ -20,7 +21,19 @@ const serverRun = () => {
   });
 };
 
-syncDB();
-serverRun();
+//syncDB();
+//serverRun();
+
+async function init() { 
+  try {
+    await syncDB(); 
+    serverRun(); 
+
+  } catch(error) {
+      console.log('ERROR => ', error)
+  }
+}
+
+init();
 
 module.exports = app;
