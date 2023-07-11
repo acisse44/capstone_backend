@@ -1,14 +1,14 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db");
+const db =  require("../db.js")
 
 //Our test Questions table with the following attributes for each
 const TestQuestion = db.define("TestQuestion", {
   ID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   testID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   question: {
@@ -24,11 +24,11 @@ const TestQuestion = db.define("TestQuestion", {
     allowNull: false,
   },
   userScore: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   pointWorth: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   

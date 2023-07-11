@@ -1,11 +1,11 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db");
+const db =  require("../db.js")
 
 //Our test Questions table with the following attributes for each
 const Role = db.define("role", {
 
   roleID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   roleName: {
