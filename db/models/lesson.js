@@ -1,11 +1,11 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db");
+const db =  require("../db.js")
 
 //Our lesson  table with the following attributes for each
 const Lesson = db.define("lesson ", {
 
   lessonID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   lessonName: {
@@ -21,7 +21,7 @@ const Lesson = db.define("lesson ", {
     allowNull: false,
   },
   languageID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   
