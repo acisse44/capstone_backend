@@ -1,10 +1,10 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db");
+const db =  require("../db.js")
 
 //Our users table with the following attributes for each
 const User = db.define("user", {
   userID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   username: {
@@ -16,7 +16,7 @@ const User = db.define("user", {
     allowNull: false,
   },
   points: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   friend: {
@@ -32,7 +32,7 @@ const User = db.define("user", {
     allowNull: false,
   },
   roleID: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 
