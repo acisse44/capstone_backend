@@ -275,6 +275,29 @@ const seedAchievements = [
     }
   ];
 
+  const seedUsers = [
+    {
+      userID: 1,
+      username: "user1",
+      password: "password1",
+      points: 0,
+      friend: "friend1",
+      language: "English",
+      achievement: "achievement1",
+      roleID: 2, // User role ID
+    },
+    {
+      userID: 2,
+      username: "user2",
+      password: "password2",
+      points: 0,
+      friend: "friend2",
+      language: "Spanish",
+      achievement: "achievement2",
+      roleID: 2, // User role ID
+    }
+  ];
+
 const seed = async () => {
   await Achievement.bulkCreate(seedAchievements);
   await Friend.bulkCreate(seedFriends);
@@ -285,7 +308,7 @@ const seed = async () => {
   await Role.bulkCreate(seedRoles);
   await Test.bulkCreate(seedTests);
   await TestQuestion.bulkCreate(seedTestQuestions);
-  await User.bulkCreate(seedFriends);
+  await User.bulkCreate(seedUsers);
 
 };
 
