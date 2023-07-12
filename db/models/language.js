@@ -1,13 +1,8 @@
 const { DataTypes } = require("sequelize");
-const db =  require("../db.js")
+const db = require("../db.js")
 
 //Our Language table with the following attributes for each
-const Language= db.define("language", {
-
-  languageID: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
+const Language = db.define("language", {
   languageName: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -20,7 +15,7 @@ const Language= db.define("language", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  cetegory: {
+  category: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
