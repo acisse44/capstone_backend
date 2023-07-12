@@ -6,6 +6,7 @@ const User = db.define("user", {
   userID: {
     type: DataTypes.INTEGER,
     allowNull: false,
+
   },
   username: {
     type: DataTypes.TEXT,
