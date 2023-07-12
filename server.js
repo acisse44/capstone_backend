@@ -1,38 +1,81 @@
-require('dotenv').config();
 const express = require("express");
-
-//make sure you are imported the moded the database where you require the db
-const db = require("./db");
-const PORT = "8080";
+const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const passport = require("passport");
 const cors = require("cors");
+const db = require("./db");
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+require("dotenv").config();
 
-// Mount on API
-//app.use("/api", require("./api"));
+const sessionStore = new SequelizeStore({ db });
 
-// Syncing DB Function
-const syncDB = () => db.sync();
-
-// Run server function
-const serverRun = () => {
-  app.listen(PORT, () => {
-    console.log(`Live on port: ${PORT}`);
-  });
+//Helper functions
+const serializeUser = (user, done) => done(null, user.id);
+const deserializeUser = async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
 };
 
-async function init() { 
-  try {
-    await syncDB(); 
-    serverRun(); 
+//Configs
+const configSession = () => ({
+  secret: "ttp2023summer",
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 2 * 60 * 60 * 1000,
+  }, // 8 hours
+  httpOnly: true,
+});
 
-  } catch(error) {
-      console.log('ERROR => ', error)
-  }
-}
+// Middleware setup
+const setupMiddleware = (app) => {
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use(
+    cors({
+      origin: "http://localhost:3000", // allow to server to accept request from different origin
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true,
+    })
+  );
+  app.use(session(configSession()));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  return app;
+};
 
-init();
+// Passport Setup
+const setupPassport = () => {
+  passport.serializeUser(serializeUser);
+  passport.deserializeUser(deserializeUser);
+};
 
-module.exports = app;
+// Routes
+const setupRoutes = (app) => {
+  app.use("/api", require("./api"));
+  app.use("/auth", require("./auth"));
+};
+
+// Start server and sync the db
+const startServer = async (app, port) => {
+  await db.sync();
+  app.listen(port, () => console.log(`Server is on port:${port}`));
+  return app;
+};
+
+// Configure all functions in one major funtion
+const configureApp = async (port) => {
+  const app = express();
+  setupPassport();
+  setupMiddleware(app);
+  await sessionStore.sync();
+  setupRoutes(app);
+  return startServer(app, port);
+};
+
+module.exports = configureApp(8080);
