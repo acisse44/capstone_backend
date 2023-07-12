@@ -1,36 +1,51 @@
-
 const User = require("./user.js");
-const Achievement = require("./achievement.js")
+const Achievement = require("./achievement.js");
+//const Friendship = require("./Friendship.js");
 const Language = require("./language.js");
 const Lesson = require("./lesson.js");
 const Quiz = require("./quiz.js");
 const Test = require("./test.js");
 const Role = require("./role.js");
-const Friendship = require("./Friendship.js");
 const TestQuestion = require("./testQuestion.js");
 const QuizQuestion = require("./quizQuestion.js");
 
-// Our Associations: one-to-many
-User.belongsToMany(Achievement, {through: Achievement, as: 'achievements', foreignKey:'userId'});
-User.belongsToMany(Language, {through: Language, as: 'languages', foreignKey:'userId'});
-User.belongsToMany(Lesson, {through: Lesson, as: 'lessons', foreignKey:'userId'}); 
-User.belongsToMany(Quiz, {through: Quiz, as: 'quizzes', foreignKey:'userId'}); 
-User.belongsToMany(Test, {through: Test, as: 'tests', foreignKey:'userId'}); 
-User.hasOne(Role, { foreignKey: "roleID"}); 
-User.belongsToMany(TestQuestion, {through: TestQuestion, as: 'testsQuestions', foreignKey:'userId'}); 
-User.belongsToMany(QuizQuestion, {through: QuizQuestion, as: 'quizQuestions', foreignKey:'userId'}); 
-User.belongsToMany(User, {through: Friendship, as: 'friends', foreignKey:'userId'});
-Test.hasMany(TestQuestion, {foreignKey: "testID"});
-Quiz.hasMany(QuizQuestion, {foreignKey: "quizID"});
-QuizQuestion.belongsTo(Quiz, {foreignKey: "quizID"});
-TestQuestion.belongsTo(Test, {foreignKey: "testID"});
-Language.hasMany(Lesson, {foreignKey: "languageID"});
-Lesson.belongsTo(Language, {foreignKey: "languageID"});
+// Our Associations: many-to-many
+Achievement.belongsToMany(User, {through: "UserAchievement"}); //M:M
+// through table cannot be the same as our associated tables
+User.belongsToMany(Achievement, {through: "UserAchievement"});
+
+
+ User.belongsToMany(Language, {through: "UserLanguage"}); 
+ Language.belongsToMany(User, {through: "UserLanguage"}); 
+
+  User.belongsToMany(Lesson, {through: "UserLesson"}); 
+  Lesson.belongsToMany(User, {through: "UserLesson"});
+
+User.belongsToMany(Quiz, {through: "UserQuiz"}); 
+Quiz.belongsToMany(User, {through: "UserQuiz"}); 
+
+ User.belongsToMany(Test, {through: "UserTest"}); 
+ Test.belongsToMany(User, {through: "UserTest"}); 
+
+  Role.hasMany(User, {foreignKey: "roleID"}); 
+  User.belongsTo(Role);
+  //User.belongsToMany(TestQuestion, {through: TestQuestion, as: 'testsQuestions', foreignKey:'userId'}); 
+// User.belongsToMany(QuizQuestion, {through: QuizQuestion, as: 'quizQuestions', foreignKey:'userId'}); 
+
+  User.belongsToMany(User, {through: "Friendship", as: "friends"});
+  
+  Test.hasMany(TestQuestion, {foreignKey: "testID"}); 
+  TestQuestion.belongsTo(Test);
+
+  Quiz.hasMany(QuizQuestion, {foreignKey: "quizID"}); 
+  QuizQuestion.belongsTo(Quiz);
+
+ Language.hasMany(Lesson, {foreignKey: "languageId"});
+ Lesson.belongsTo(Language);
 
 module.exports = {
   User,
   Achievement,
-  Friendship,
   Language,
   Lesson,
   Quiz,
@@ -38,4 +53,5 @@ module.exports = {
   Role,
   TestQuestion,
   QuizQuestion,
+//  Friendship,
 };

@@ -15,10 +15,10 @@ const Lesson = db.define("lesson ", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  languageID: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
+  // languageID: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false,
+  // },
 
 });
 

@@ -5,7 +5,7 @@ const { name } = require("../package.json");
 
 console.log(process.env.USER_NAME);
 //creation of singleton database
-const db = new Sequelize(name, process.env.USER_NAME, process.env.PASSWORD, 
+const db = new Sequelize(name, process.env.USERNAME, process.env.PASSWORD, 
 {
   host : 'localhost',
   logging: true,
