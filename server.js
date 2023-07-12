@@ -14,7 +14,7 @@ app.use(cors());
 //app.use("/api", require("./api"));
 
 // Syncing DB Function
-const syncDB = () => db.sync( {force: true});
+const syncDB = () => db.sync();
 
 // Run server function
 const serverRun = () => {
