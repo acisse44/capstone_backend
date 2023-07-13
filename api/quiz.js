@@ -5,7 +5,7 @@ const { Quiz, QuizQuestion } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allQuizzes = await Test.findAll();
+    const allQuizzes = await Quiz.findAll({});
     allQuizzes
       ? res.status(200).json(allQuizzes)
       : res.status(404).send("Quizzes Not Found");

@@ -3,6 +3,17 @@ const router = express.Router();
 
 const { Role } = require("../db/models");
 
+router.get("/", async (req, res, next) => {
+  try {
+    const allRoles = await Role.findAll({});
+    allRoles
+      ? res.status(200).json(allRoles)
+      : res.status(404).send("Roles Not Found");
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/:id", async (req, res, next) => {
   try {
     const role = await Role.findByPk(req.params.id);
