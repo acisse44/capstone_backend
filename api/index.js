@@ -1,5 +1,4 @@
-
-const router = require("express").Router;
+const router = require("express").Router();
 
 //mount on api:
 //router.use("/filename, require("./filename"));
@@ -12,9 +11,9 @@ router.use("/achievements", require("./achievements"));
 router.use("/role", require("./role"));
 
 router.use((req, res, next) => {
-    const error = new Error("404 Not Found");
-    error.status = 404;
-    next(error);
+  const error = new Error("404 Not Found");
+  error.status = 404;
+  next(error);
 });
 
 module.exports = router;
