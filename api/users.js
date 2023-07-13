@@ -4,18 +4,18 @@ const { User } = require("../db/models");
 //Get all users
 router.get("/", async (request, response, next) => {
   try {
-    const allUsers = await User.findAll({ attributes: ["id", "username"] });
+    const allUsers = await User.findAll({ attributes: ["id", "email"] });
     response.status(200).json(allUsers);
   } catch (error) {
     next(error);
   }
 });
 
-//Get user by username
-router.get("/:username", async (req, res, next) => {
+//Get user by email
+router.get("/:email", async (req, res, next) => {
   try {
     const user = await User.findAll({
-      where: { username: req.params.username },
+      where: { email: req.params.email },
     });
     user ? res.status(200).json(user) : res.status(404).send("User Not Found");
   } catch (error) {
@@ -36,10 +36,10 @@ router.post("/", async (req, res, next) => {
 });
 
 //Update user
-router.put("/:username", async (req, res, next) => {
+router.put("/:email", async (req, res, next) => {
   try {
     const user = await User.findOne({
-      where: { username: req.params.username },
+      where: { email: req.params.email },
     });
     if (user) {
       await user.update({ password: req.body.password });
@@ -53,10 +53,10 @@ router.put("/:username", async (req, res, next) => {
 });
 
 //delete user
-router.delete("/:username", async (req, res, next) => {
+router.delete("/:email", async (req, res, next) => {
   try {
-    const username = req.params.username;
-    const deletedUser = await User.destroy({ where: { username } });
+    const email = req.params.email;
+    const deletedUser = await User.destroy({ where: { email } });
 
     if (deletedUser) {
       res.status(200).json("User deleted successfully");

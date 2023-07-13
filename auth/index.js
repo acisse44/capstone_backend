@@ -6,7 +6,7 @@ const { User } = require("../db/models");
 // auth/login
 router.post("/login", async (req, res, next) => {
   try {
-    const user = await User.findOne({ where: { username: req.body.username } });
+    const user = await User.findOne({ where: { email: req.body.email } });
     if (!user || !user.correctPassword(req.body.password)) {
       res.status(401).send("Invalid login attempt");
     } else {
@@ -22,8 +22,8 @@ router.post("/login", async (req, res, next) => {
 // auth/signup
 router.post("/signup", async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
       return res.status(400).send("Required fields missing");
     }
     const user = await User.create(req.body);
