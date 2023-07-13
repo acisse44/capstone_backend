@@ -22,7 +22,7 @@ const deserializeUser = async (id, done) => {
 
 //Configs
 const configSession = () => ({
-  secret: "ttp2023summer",
+  secret: "capstone",
   store: sessionStore,
   resave: false,
   saveUninitialized: false,

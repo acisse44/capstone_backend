@@ -16,16 +16,17 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
         const googleId = profile.id;
-        const username = profile.emails[0].value; 
-        const password = null;
-        const points = 0; 
-        const salt = null; 
-        const isAdmin = false; 
+        const email = profile.emails[0].value;
+        const imgUrl = profile.photos[0].value;
+        const firstName = profile.name.givenName;
+        const lastName = profile.name.familyName;
+        const fullName = profile.displayName;
+
 
         // Try to find user in the database, if not present create a new user
         const [user] = await User.findOrCreate({
           where: { googleId },
-          defaults: { username, password, points, salt, isAdmin },
+          defaults: { email, imgUrl, firstName, lastName, fullName },
         });
 
         // Done with no errors and the user
@@ -43,7 +44,7 @@ passport.use(
 // Trigger Google OAuth
 router.get(
   "/",
-  passport.authenticate("google", { scope: ["profile"] })
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 // auth/google/callback
