@@ -1,3 +1,4 @@
+const { User } = require("../db/models");
 const isAuthorized = async (req, res, next) => {
   const user = await User.findByPK(req.session.id);
 
