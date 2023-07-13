@@ -5,7 +5,7 @@ const { Test, TestQuestion } = require("../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allTests = await Test.findAll();
+    const allTests = await Test.findAll({});
     allTests
       ? res.status(200).json(allTests)
       : res.status(404).send("Tests Not Found");
@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const test = await Test.findByPk(req.params.id, { include: TestQuestion });
-    test ? res.status(200).json(test) : res.status(404).send("Role Not Found");
+    test ? res.status(200).json(test) : res.status(404).send("Test Not Found");
   } catch (error) {
     next(error);
   }
