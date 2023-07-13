@@ -32,8 +32,18 @@ User.init(
     //   primaryKey: true,
     //   allowNull: false,
     // },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: "Invalid Email Format",
+        },
+      },
+    },
     username: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     password: {
@@ -51,10 +61,10 @@ User.init(
       // For OAuth purposes
       type: DataTypes.STRING,
     },
-    isAdmin: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
+    // isAdmin: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: false,
+    // },
     // friend: {
     //   type: DataTypes.STRING,
     //   allowNull: false,
