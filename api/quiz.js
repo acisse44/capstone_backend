@@ -1,49 +1,30 @@
 const express = require("express");
 const router = express.Router();
+const { Quiz } = require("../db/models");
 
-const { Quiz, QuizQuestion } = require("../db/models");
-
-router.get("/", async (req, res, next) => {
+router.get("/", async (request, response, next) => {
   try {
-    const allQuizzes = await Quiz.findAll({});
-    allQuizzes
-      ? res.status(200).json(allQuizzes)
-      : res.status(404).send("Quizzes Not Found");
+    const allQuizs = await Quiz.findAll({});
+    response.status(200).json(allQuizs);
   } catch (error) {
     next(error);
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (request, response, next) => {
   try {
-    const quiz = await Quiz.findByPk(req.params.id, { include: QuizQuestion });
-    quiz ? res.status(200).json(quiz) : res.status(404).send("Role Not Found");
+    const Quiz = await Quiz.findByPk(request.params.id);
+    Quiz
+      ? response.status(200).json(Quiz)
+      : response.status(404).send("Quiz Not Found");
   } catch (error) {
     next(error);
   }
 });
 
 router.post("/", async (req, res, next) => {
-  const { languageID, quizName, difficulty, question } = req.body;
   try {
-    const newQuiz = await Quiz.create({
-      languageID,
-      quizName,
-      difficulty,
-      question,
-    });
-    if (question && question.length > 0) {
-      await QuizQuestion.bulkCreate(
-        question.map((q) => ({
-          quizID: newQuiz.quizID,
-          question: q.question,
-          quizChoice: q.quizChoice,
-          correctChoice: q.correctChoice,
-          userScore: q.userScore,
-          pointWorth: q.pointWorth,
-        }))
-      );
-    }
+    const newQuiz = await Quiz.create(req.body);
     newQuiz
       ? res.status(200).json(newQuiz)
       : res.status(404).send("Unsuccessful In Adding Quiz");
@@ -53,31 +34,14 @@ router.post("/", async (req, res, next) => {
 });
 
 router.put("/", async (req, res, next) => {
-  const { languageID, quizName, difficulty, question } = req.body;
   try {
-    const quiz = await Quiz.findByPk(req.params.id);
-    if (!quiz) {
-      return res.status(404).send("Test not found");
-    }
-    quiz.languageID = languageID;
-    quiz.quizName = quizName;
-    quiz.difficulty = difficulty;
-    await quiz.save();
-    await QuizQuestion.destroy({ where: { id: req.params.id } });
-
-    if (question && question.length > 0) {
-      await QuizQuestion.bulkCreate(
-        question.map((q) => ({
-          quizID: newQuiz.quizID,
-          question: q.question,
-          quizChoice: q.quizChoice,
-          correctChoice: q.correctChoice,
-          userScore: q.userScore,
-          pointWorth: q.pointWorth,
-        }))
-      );
-    }
-    res.json(quiz);
+    const updateQuiz = await Quiz.update(req.body, {
+      where: { id: req.params.id },
+      returning: true,
+    });
+    updateQuiz
+      ? res.status(200).json("Quiz edited successfully")
+      : res.status(404).send("Quiz Not Found");
   } catch (error) {
     next(error);
   }
@@ -85,10 +49,10 @@ router.put("/", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const quiz = await Quiz.destroy({ where: { id: req.params.id } });
-    quiz
+    const Quiz = await Quiz.destroy({ where: { id: req.params.id } });
+    Quiz
       ? res.status(200).send("Successfully removed")
-      : res.status(404).send("Test Not Found");
+      : res.status(404).send("Quiz Not Found");
   } catch (error) {
     next(error);
   }
