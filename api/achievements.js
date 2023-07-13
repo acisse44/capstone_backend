@@ -22,4 +22,15 @@ router.get("/:id", async (request, response, next) => {
     };
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const newAchievement = await Achievement.create(req.body);
+    newAchievement
+      ? res.status(200).json(newAchievement)
+      : res.status(404).send("Unsuccessful In Adding Achievement");
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
