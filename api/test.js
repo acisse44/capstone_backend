@@ -33,20 +33,6 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
-  try {
-    const updateTest = await Test.update(req.body, {
-      where: { id: req.params.id },
-      returning: true,
-    });
-    updateTest
-      ? res.status(200).json("Test edited successfully")
-      : res.status(404).send("Test Not Found");
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.delete("/:id", async (req, res, next) => {
   try {
     const test = await Test.destroy({ where: { id: req.params.id } });
