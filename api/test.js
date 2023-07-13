@@ -1,49 +1,30 @@
 const express = require("express");
 const router = express.Router();
+const { Test } = require("../db/models");
 
-const { Test, TestQuestion } = require("../db/models");
-
-router.get("/", async (req, res, next) => {
+router.get("/", async (request, response, next) => {
   try {
     const allTests = await Test.findAll({});
-    allTests
-      ? res.status(200).json(allTests)
-      : res.status(404).send("Tests Not Found");
+    response.status(200).json(allTests);
   } catch (error) {
     next(error);
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (request, response, next) => {
   try {
-    const test = await Test.findByPk(req.params.id, { include: TestQuestion });
-    test ? res.status(200).json(test) : res.status(404).send("Test Not Found");
+    const test = await Test.findByPk(request.params.id);
+    test
+      ? response.status(200).json(test)
+      : response.status(404).send("Test Not Found");
   } catch (error) {
     next(error);
   }
 });
 
 router.post("/", async (req, res, next) => {
-  const { languageID, testName, difficulty, question } = req.body;
   try {
-    const newTest = await Test.create({
-      languageID,
-      testName,
-      difficulty,
-      question,
-    });
-    if (question && question.length > 0) {
-      await TestQuestion.bulkCreate(
-        question.map((q) => ({
-          testID: newTest.testID,
-          question: q.question,
-          testChoice: q.testChoice,
-          correctChoice: q.correctChoice,
-          userScore: q.userScore,
-          pointWorth: q.pointWorth,
-        }))
-      );
-    }
+    const newTest = await Test.create(req.body);
     newTest
       ? res.status(200).json(newTest)
       : res.status(404).send("Unsuccessful In Adding Test");
@@ -53,31 +34,14 @@ router.post("/", async (req, res, next) => {
 });
 
 router.put("/", async (req, res, next) => {
-  const { languageID, testName, difficulty, question } = req.body;
   try {
-    const test = await Test.findByPk(req.params.id);
-    if (!test) {
-      return res.status(404).send("Test not found");
-    }
-    test.languageID = languageID;
-    test.testName = testName;
-    test.difficulty = difficulty;
-    await test.save();
-    await TestQuestion.destroy({ where: { id: req.params.id } });
-
-    if (question && question.length > 0) {
-      await TestQuestion.bulkCreate(
-        question.map((q) => ({
-          testID: test.testID,
-          question: q.question,
-          testChoice: q.testChoice,
-          correctChoice: q.correctChoice,
-          userScore: q.userScore,
-          pointWorth: q.pointWorth,
-        }))
-      );
-    }
-    res.json(test);
+    const updateTest = await Test.update(req.body, {
+      where: { id: req.params.id },
+      returning: true,
+    });
+    updateTest
+      ? res.status(200).json("Test edited successfully")
+      : res.status(404).send("Test Not Found");
   } catch (error) {
     next(error);
   }

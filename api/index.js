@@ -10,7 +10,9 @@ router.use("/friends", require("./friends"));
 router.use("/achievements", require("./achievements"));
 router.use("/role", require("./role"));
 router.use("/quiz", require("./quiz"));
+router.use("/quizQuestion", require("./quizQuestion"));
 router.use("/test", require("./test"));
+router.use("/testQuestion", require("./testQuestion"));
 
 router.use((req, res, next) => {
   const error = new Error("404 Not Found");
