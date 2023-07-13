@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const { User } = require("../db/models");
 
 //Get all users
@@ -68,6 +67,5 @@ router.delete("/:username", async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = router;
