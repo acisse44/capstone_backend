@@ -255,21 +255,39 @@ const seedRoles = [
 const seedTests = [
   {
     //   testID: 1,
-    languageID: 1, // Language ID for English
+    languageId: 1, // Language ID for English
     testName: "English Test",
     difficulty: "Intermediate",
   },
   {
     //   testID: 2,
-    languageID: 2, // Language ID for Spanish
+    languageId: 2, // Language ID for Spanish
     testName: "Spanish Test",
     difficulty: "Beginner",
   },
   {
     //   testID: 3,
-    languageID: 3, // Language ID for Arabic
+    languageId: 3, // Language ID for Arabic
     testName: "Arabic Test",
     difficulty: "Advanced",
+  },
+  {
+    //   testID: 4,
+    languageId: 4, // Language ID for Arabic
+    testName: "Mandarin Test",
+    difficulty: "Advanced",
+  },
+  {
+    //   testID: 5,
+    languageId: 5, // Language ID for Arabic
+    testName: "French Test",
+    difficulty: "Intermediate",
+  },
+  {
+    //   testID: 6,
+    languageId: 6, // Language ID for Arabic
+    testName: "Soninke Test",
+    difficulty: "Beginner",
   },
 ];
 
