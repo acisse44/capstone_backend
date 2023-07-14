@@ -105,42 +105,42 @@ const seedLessons = [
     lessonName: "Introduction to English",
     description: "Learn the basics of the English language",
     content: "Lesson content for Introduction to English",
-    languageID: 1, // English language ID
+    languageId: 1, // English language ID
   },
   {
     //   lessonID: 2,
     lessonName: "Introduction to Spanish",
     description: "Learn the basics of the Spanish language",
     content: "Lesson content for Introduction to Spanish",
-    languageID: 2, // Spanish language ID
+    languageId: 2, // Spanish language ID
   },
   {
     //   lessonID: 3,
     lessonName: "Introduction to Arabic",
     description: "Learn the basics of the Arabic language",
     content: "Lesson content for Introduction to Arabic",
-    languageID: 3, // Arabic language ID
+    languageId: 3, // Arabic language ID
   },
   {
     //   lessonID: 4,
     lessonName: "Introduction to Mandarin",
     description: "Learn the basics of the Mandarin language",
     content: "Lesson content for Introduction to Mandarin",
-    languageID: 4, // Mandarin language ID
+    languageId: 4, // Mandarin language ID
   },
   {
     //   lessonID: 5,
     lessonName: "Introduction to French",
     description: "Learn the basics of the French language",
     content: "Lesson content for Introduction to French",
-    languageID: 5, // French language ID
+    languageId: 5, // French language ID
   },
   {
     //   lessonID: 6,
     lessonName: "Introduction to Soninke",
     description: "Learn the basics of the Soninke language",
     content: "Lesson content for Introduction to Soninke",
-    languageID: 6, // Soninke language ID
+    languageId: 6, // Soninke language ID
   },
 ];
 
