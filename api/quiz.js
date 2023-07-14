@@ -13,9 +13,9 @@ router.get("/", async (request, response, next) => {
 
 router.get("/:id", async (request, response, next) => {
   try {
-    const Quiz = await Quiz.findByPk(request.params.id);
-    Quiz
-      ? response.status(200).json(Quiz)
+    const quiz = await Quiz.findByPk(request.params.id);
+    quiz
+      ? response.status(200).json(quiz)
       : response.status(404).send("Quiz Not Found");
   } catch (error) {
     next(error);
