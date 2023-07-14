@@ -16,24 +16,6 @@ const sessionStore = new SequelizeStore({ db });
 
 
 //socket io setup
-// io.on('connection', (socket) => {
-//   console.log('a user connected');
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected');
-//   });
-// });
-// io.on('connection', (socket) => {
-//   console.log('a user connected');
-//   socket.on('chat message', (msg) => {
-//     io.emit('chat message', msg);
-//     console.log('message: ' + msg);
-//   });
-  
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected');
-//   });
-// });
-
 io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
