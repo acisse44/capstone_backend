@@ -4,10 +4,24 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const passport = require("passport");
 const cors = require("cors");
 const db = require("./db");
+const app = express();
+const http = require('http');
+const server = http.createServer(app); //wraps app in server, so we need server.listen to use it 
+const { Server } = require("socket.io");
+const io = new Server(server);
 
 require("dotenv").config();
 
 const sessionStore = new SequelizeStore({ db });
+
+
+//socket io setup
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+    console.log(msg);
+  });
+});
 
 //Helper functions
 const serializeUser = (user, done) => done(null, user.id);
@@ -59,18 +73,18 @@ const setupPassport = () => {
 const setupRoutes = (app) => {
   app.use("/api", require("./api"));
   app.use("/auth", require("./auth"));
+  app.use("/chat", require ("./chat")); //reach our chat page route
 };
 
 // Start server and sync the db
 const startServer = async (app, port) => {
   await db.sync();
-  app.listen(port, () => console.log(`Server is on port:${port}`));
+  server.listen(port, () => console.log(`Server is on port:${port}`));
   return app;
 };
 
 // Configure all functions in one major funtion
 const configureApp = async (port) => {
-  const app = express();
   setupPassport();
   setupMiddleware(app);
   await sessionStore.sync();
