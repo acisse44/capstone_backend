@@ -147,37 +147,37 @@ const seedLessons = [
 const seedQuizzes = [
   {
     //   quizID: 1,
-    languageID: 1, // English language ID
+    languageId: 1, // English language ID
     quizName: "English Quiz",
     difficulty: "Beginner",
   },
   {
     //   quizID: 2,
-    languageID: 2, // Spanish language ID
+    languageId: 2, // Spanish language ID
     quizName: "Spanish Quiz",
     difficulty: "Intermediate",
   },
   {
     //   quizID: 3,
-    languageID: 3, // Arabic language ID
+    languageId: 3, // Arabic language ID
     quizName: "Arabic Quiz",
     difficulty: "Intermediate",
   },
   {
     //   quizID: 4,
-    languageID: 4, // Mandarin language ID
+    languageId: 4, // Mandarin language ID
     quizName: "Mandarin Quiz",
     difficulty: "Advanced",
   },
   {
     //   quizID: 5,
-    languageID: 5, // French language ID
+    languageId: 5, // French language ID
     quizName: "French Quiz",
     difficulty: "Intermediate",
   },
   {
     //   quizID: 6,
-    languageID: 6, // Soninke language ID
+    languageId: 6, // Soninke language ID
     quizName: "Soninke Quiz",
     difficulty: "Beginner",
   },

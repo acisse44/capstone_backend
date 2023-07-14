@@ -43,6 +43,9 @@ Quiz.belongsToMany(User, {through: "UserQuiz"});
  Language.hasMany(Lesson, {foreignKey: "languageId"});
  Lesson.belongsTo(Language);
 
+ Language.hasMany(Quiz, { foreignKey: "quizId" });
+ Quiz.belongsTo(Language);
+
 module.exports = {
   User,
   Achievement,
