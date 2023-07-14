@@ -33,19 +33,6 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
-  try {
-    const updateQuiz = await Quiz.update(req.body, {
-      where: { id: req.params.id },
-      returning: true,
-    });
-    updateQuiz
-      ? res.status(200).json("Quiz edited successfully")
-      : res.status(404).send("Quiz Not Found");
-  } catch (error) {
-    next(error);
-  }
-});
 
 router.delete("/:id", async (req, res, next) => {
   try {

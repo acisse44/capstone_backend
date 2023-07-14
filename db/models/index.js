@@ -27,17 +27,17 @@ Quiz.belongsToMany(User, {through: "UserQuiz"});
  User.belongsToMany(Test, {through: "UserTest"}); 
  Test.belongsToMany(User, {through: "UserTest"}); 
 
-  Role.hasMany(User, {foreignKey: "roleID"}); 
+  Role.hasMany(User, {foreignKey: "roleId"}); 
   User.belongsTo(Role);
   //User.belongsToMany(TestQuestion, {through: TestQuestion, as: 'testsQuestions', foreignKey:'userId'}); 
 // User.belongsToMany(QuizQuestion, {through: QuizQuestion, as: 'quizQuestions', foreignKey:'userId'}); 
 
   User.belongsToMany(User, {through: "Friendship", as: "friends"});
   
-  Test.hasMany(TestQuestion, {foreignKey: "testID"}); 
+  Test.hasMany(TestQuestion, {foreignKey: "testId"}); 
   TestQuestion.belongsTo(Test);
 
-  Quiz.hasMany(QuizQuestion, {foreignKey: "quizID"}); 
+  Quiz.hasMany(QuizQuestion, {foreignKey: "quizId"}); 
   QuizQuestion.belongsTo(Quiz);
 
  Language.hasMany(Lesson, {foreignKey: "languageId"});

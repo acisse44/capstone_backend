@@ -33,20 +33,6 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
-  try {
-    const updateLanguage = await Language.update(req.body, {
-      where: { id: req.params.id },
-      returning: true,
-    });
-    updateLanguage
-      ? res.status(200).json("Language edited successfully")
-      : res.status(404).send("Language Not Found");
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.delete("/:id", async (req, res, next) => {
   try {
     const language = await Language.destroy({ where: { id: req.params.id } });
