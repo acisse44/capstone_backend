@@ -147,37 +147,37 @@ const seedLessons = [
 const seedQuizzes = [
   {
     //   quizID: 1,
-    languageID: 1, // English language ID
+    languageId: 1, // English language ID
     quizName: "English Quiz",
     difficulty: "Beginner",
   },
   {
     //   quizID: 2,
-    languageID: 2, // Spanish language ID
+    languageId: 2, // Spanish language ID
     quizName: "Spanish Quiz",
     difficulty: "Intermediate",
   },
   {
     //   quizID: 3,
-    languageID: 3, // Arabic language ID
+    languageId: 3, // Arabic language ID
     quizName: "Arabic Quiz",
     difficulty: "Intermediate",
   },
   {
     //   quizID: 4,
-    languageID: 4, // Mandarin language ID
+    languageId: 4, // Mandarin language ID
     quizName: "Mandarin Quiz",
     difficulty: "Advanced",
   },
   {
     //   quizID: 5,
-    languageID: 5, // French language ID
+    languageId: 5, // French language ID
     quizName: "French Quiz",
     difficulty: "Intermediate",
   },
   {
     //   quizID: 6,
-    languageID: 6, // Soninke language ID
+    languageId: 6, // Soninke language ID
     quizName: "Soninke Quiz",
     difficulty: "Beginner",
   },
@@ -255,21 +255,39 @@ const seedRoles = [
 const seedTests = [
   {
     //   testID: 1,
-    languageID: 1, // Language ID for English
+    languageId: 1, // Language ID for English
     testName: "English Test",
     difficulty: "Intermediate",
   },
   {
     //   testID: 2,
-    languageID: 2, // Language ID for Spanish
+    languageId: 2, // Language ID for Spanish
     testName: "Spanish Test",
     difficulty: "Beginner",
   },
   {
     //   testID: 3,
-    languageID: 3, // Language ID for Arabic
+    languageId: 3, // Language ID for Arabic
     testName: "Arabic Test",
     difficulty: "Advanced",
+  },
+  {
+    //   testID: 4,
+    languageId: 4, // Language ID for Arabic
+    testName: "Mandarin Test",
+    difficulty: "Advanced",
+  },
+  {
+    //   testID: 5,
+    languageId: 5, // Language ID for Arabic
+    testName: "French Test",
+    difficulty: "Intermediate",
+  },
+  {
+    //   testID: 6,
+    languageId: 6, // Language ID for Arabic
+    testName: "Soninke Test",
+    difficulty: "Beginner",
   },
 ];
 

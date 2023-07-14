@@ -3,7 +3,7 @@ const db =  require("../db.js")
 
 //Our quiz table with the following attributes for each
 const Quiz = db.define("quiz", {
-  languageID: {
+  languageId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
