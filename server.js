@@ -8,20 +8,27 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app); //wraps app in server, so we need server.listen to use it 
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server); //passing the server we created
 
 require("dotenv").config();
+
 
 const sessionStore = new SequelizeStore({ db });
 
 
 //socket io setup
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-    console.log(msg);
-  });
+io.on('connection', (socket) => { //when the user is connected to the server
+  // socket.on('chat message', (msg) => { //when user connects to the server
+  //   io.emit('chat message', msg);
+  //   console.log(msg);
+  // });
+  console.log("User is connected");
+  socket.on("privateMessage", (data) ) 
+    socket.on('disconnect', () => {
+      console.log("User disconnected")
+    })
 });
+
 
 //Helper functions
 const serializeUser = (user, done) => done(null, user.id);
@@ -51,7 +58,7 @@ const setupMiddleware = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(
-    cors({
+    cors({ //solvinng cors issues, specifying credentials and settings 
       origin: "http://localhost:3000", // allow to server to accept request from different origin
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
