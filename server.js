@@ -33,12 +33,18 @@ io.on('connection', (socket) => {
   //create socket event for joining a room to then link to frontend
   //data is the roomid being passed in from frontend 
   //socket.join is a function from socket 
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`user joined room + ${data}`)
-  })
+  // socket.on("join_room", (data) => {
+  //   socket.join(data);
+  //   console.log(`user joined room + ${data}`)
+  // })
 
   console.log("user connected");
+
+  //sends the message to all the users on the server
+  socket.on('message', (data) => {
+    socket.emit('messageResponse', data);
+  });
+
   socket.on("disconnect", () => {
     console.log("user disconnected");
   })
