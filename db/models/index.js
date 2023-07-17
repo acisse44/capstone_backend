@@ -42,10 +42,10 @@ QuizQuestion.belongsTo(Quiz);
 Language.hasMany(Lesson, { foreignKey: "languageId" });
 Lesson.belongsTo(Language);
 
-Language.hasMany(Quiz, { foreignKey: "quizId" });
+Language.hasMany(Quiz, { foreignKey: "languageId" });
 Quiz.belongsTo(Language);
 
-Language.hasMany(Test, { foreignKey: "testId" });
+Language.hasMany(Test, { foreignKey: "languageId" });
 Test.belongsTo(Language);
 
 module.exports = {

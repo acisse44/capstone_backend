@@ -186,7 +186,7 @@ const seedQuizzes = [
 const seedQuizQuestions = [
   {
     //   ID: 1,
-    // quizID: 1, // Quiz ID for English Quiz
+    quizId: 1, // Quiz ID for English Quiz
     question: "What is the capital of England?",
     quizChoice: "A) London\nB) Paris\nC) Madrid\nD) Rome",
     correctChoice: "A",
@@ -195,7 +195,7 @@ const seedQuizQuestions = [
   },
   {
     //   ID: 2,
-    //quizID: 2, // Quiz ID for Spanish Quiz
+    quizId: 2, // Quiz ID for Spanish Quiz
     question: "How do you say 'hello' in Spanish?",
     quizChoice: "A) Hola\nB) Bonjour\nC) Salut\nD) Konnichiwa",
     correctChoice: "A",
@@ -204,7 +204,7 @@ const seedQuizQuestions = [
   },
   {
     //   ID: 3,
-    // quizID: 3, // Quiz ID for Arabic Quiz
+    quizId: 3, // Quiz ID for Arabic Quiz
     question: "What is the writing direction of Arabic?",
     quizChoice: "A) Left to right\nB) Right to left\nC) Top to bottom",
     correctChoice: "B",
@@ -213,7 +213,7 @@ const seedQuizQuestions = [
   },
   {
     //   ID: 4,
-    // quizID: 4, // Quiz ID for Mandarin Quiz
+    quizId: 4, // Quiz ID for Mandarin Quiz
     question: "How many tones does Mandarin Chinese have?",
     quizChoice: "A) 2\nB) 4\nC) 6\nD) 8",
     correctChoice: "B",
@@ -222,7 +222,7 @@ const seedQuizQuestions = [
   },
   {
     //   ID: 5,
-    // quizID: 5, // Quiz ID for French Quiz
+    quizId: 5, // Quiz ID for French Quiz
     question: "What is the French word for 'goodbye'?",
     quizChoice: "A) Bonjour\nB) Au revoir\nC) Merci\nD) Oui",
     correctChoice: "B",
@@ -231,7 +231,7 @@ const seedQuizQuestions = [
   },
   {
     //   ID: 6,
-    //  quizID: 6, // Quiz ID for Soninke Quiz
+    quizId: 6, // Quiz ID for Soninke Quiz
     question: "What country is Soninke primarily spoken in?",
     quizChoice: "A) Senegal\nB) Mali\nC) Guinea\nD) Gambia",
     correctChoice: "A",
@@ -294,7 +294,7 @@ const seedTests = [
 const seedTestQuestions = [
   {
     //   ID: 1,
-    // testID: 1, // Test ID for English Test
+    testId: 1, // Test ID for English Test
     question: "What is the plural form of 'book'?",
     testChoice: "A) books\nB) bookes\nC) book's\nD) bookes'",
     correctChoice: "A",
@@ -303,7 +303,7 @@ const seedTestQuestions = [
   },
   {
     //   ID: 2,
-    // testID: 2, // Test ID for Spanish Test
+    testId: 2, // Test ID for Spanish Test
     question: "Which verb means 'to eat' in Spanish?",
     testChoice: "A) beber\nB) escribir\nC) comer\nD) hablar",
     correctChoice: "C",
@@ -312,7 +312,7 @@ const seedTestQuestions = [
   },
   {
     //   ID: 3,
-    // testID: 3, // Test ID for Arabic Test
+    testId: 3, // Test ID for Arabic Test
     question: "How do you write 'hello' in Arabic?",
     testChoice: "A) مرحبا\nB) صباح الخير\nC) شكرا\nD) مع السلامة",
     correctChoice: "A",
