@@ -302,6 +302,25 @@ const seedTestQuestions = [
     pointWorth: 10,
   },
   {
+    //   ID: 1,
+    testId: 1, // Test ID for English Test
+    question: "If you love cats, what will you call yourself in English?",
+    testChoice: "A) Cat\nB) Cats\nC) Cat Person\nD) Cat People",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    //   ID: 1,
+    testId: 1, // Test ID for English Test
+    question: "Who wrote the play 'Romeo and Juliet'?",
+    testChoice:
+      "A) George Orwell\nB) Jane Austen\nC) Charles Dickens\nD) William Shakespeare",
+    correctChoice: "D",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
     //   ID: 2,
     testId: 2, // Test ID for Spanish Test
     question: "Which verb means 'to eat' in Spanish?",
@@ -316,6 +335,31 @@ const seedTestQuestions = [
     question: "How do you write 'hello' in Arabic?",
     testChoice: "A) مرحبا\nB) صباح الخير\nC) شكرا\nD) مع السلامة",
     correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 4, // Test ID for Mandarin Test
+    question: "How do you write 'hello' in Mandarin?",
+    testChoice: "A) 你好\nB) 再见\nC) 谢谢\nD) 对不起",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 5, // Test ID for French Test
+    question: "How do you express 'late for work' in French?",
+    testChoice:
+      "A) Bonjour\nB) En retard pour le travail\nC) Merci\nD) Excusez-moi",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 6, // Test ID for Soninke Test
+    question: "How do you write 'thank you' in Soninke?",
+    testChoice: "A) Nagode\nB) Nanga def\nC) Djamano\nD) Ani sana",
+    correctChoice: "C",
     userScore: 0,
     pointWorth: 10,
   },
