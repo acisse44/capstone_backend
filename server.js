@@ -12,6 +12,7 @@ const { Server } = require("socket.io");
 
 require("dotenv").config();
 
+
 const sessionStore = new SequelizeStore({ db });
 
 //initialize, letting our frontend page access it
@@ -49,6 +50,7 @@ io.on('connection', (socket) => {
   })
 });
 
+
 //Helper functions
 const serializeUser = (user, done) => done(null, user.id);
 const deserializeUser = async (id, done) => {
@@ -77,7 +79,7 @@ const setupMiddleware = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(
-    cors({
+    cors({ //solvinng cors issues, specifying credentials and settings 
       origin: "http://localhost:3000", // allow to server to accept request from different origin
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
