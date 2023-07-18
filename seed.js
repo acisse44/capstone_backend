@@ -101,10 +101,9 @@ const seedLanguages = [
 
 const seedLessons = [
   {
-    //   lessonID: 1,
     lessonName: "Introduction to English",
     description: "Learn the basics of the English language",
-    content: "Lesson content for Introduction to English",
+    content: '[{"question": "What is your name?", "answer": "My name is Sarah."}, {"question": "How old are you?", "answer": "I am 25 years old."}, {"question": "Where do you live?", "answer": "I live in London."}, {"question": "What is your favorite color?", "answer": "My favorite color is blue."}, {"question": "What do you like to do in your free time?", "answer": "I enjoy reading and playing sports."}]',
     languageId: 1, // English language ID
   },
   {
@@ -122,10 +121,23 @@ const seedLessons = [
     languageId: 1, // English language ID
   },
   {
-    //   lessonID: 2,
+    // lessonID: 1,
+    lessonName: "Intermediate English",
+    description: "Expand your English language skills",
+    content: "Lesson content for Intermediate English",
+    languageId: 1, // English language ID
+  },
+  {
+    // lessonID: 1,
+    lessonName: "Advanced English",
+    description: "Master the complexities of the English language",
+    content: "Lesson content for Advanced English",
+    languageId: 1, // English language ID
+  },
+  {
     lessonName: "Introduction to Spanish",
     description: "Learn the basics of the Spanish language",
-    content: "Lesson content for Introduction to Spanish",
+    content: '[{"question": "¿Cuál es tu nombre?", "answer": "Mi nombre es Juan."}, {"question": "¿Cuántos años tienes?", "answer": "Tengo 30 años."}, {"question": "¿Dónde vives?", "answer": "Vivo en Madrid."}, {"question": "¿Cuál es tu color favorito?", "answer": "Mi color favorito es verde."}, {"question": "¿Qué te gusta hacer en tu tiempo libre?", "answer": "Me gusta leer y ver películas."}]',
     languageId: 2, // Spanish language ID
   },
   {
@@ -143,10 +155,23 @@ const seedLessons = [
     languageId: 2, // Spanish language ID
   },
   {
-    //   lessonID: 3,
+    // lessonID: 2,
+    lessonName: "Intermediate Spanish",
+    description: "Expand your Spanish language skills",
+    content: "Lesson content for Intermediate Spanish",
+    languageId: 2, // Spanish language ID
+  },
+  {
+    // lessonID: 2,
+    lessonName: "Advanced Spanish",
+    description: "Master the complexities of the Spanish language",
+    content: "Lesson content for Advanced Spanish",
+    languageId: 2, // Spanish language ID
+  },
+  {
     lessonName: "Introduction to Arabic",
     description: "Learn the basics of the Arabic language",
-    content: "Lesson content for Introduction to Arabic",
+    content: '[{"question": "ما اسمك؟", "answer": "اسمي سارة."}, {"question": "كم عمرك؟", "answer": "عمري 25 سنة."}, {"question": "أين تعيش؟", "answer": "أنا أعيش في لندن."}, {"question": "ما هو لونك المفضل؟", "answer": "لوني المفضل هو الأزرق."}, {"question": "ما الذي تحب فعله في وقت فراغك؟", "answer": "أنا أستمتع بالقراءة وممارسة الرياضة."}]',
     languageId: 3, // Arabic language ID
   },
   {
@@ -164,10 +189,23 @@ const seedLessons = [
     languageId: 3, // Arabic language ID
   },
   {
-    //   lessonID: 4,
+    // lessonID: 3,
+    lessonName: "Intermediate Arabic",
+    description: "Expand your Arabic language skills",
+    content: "Lesson content for Intermediate Arabic",
+    languageId: 3, // Arabic language ID
+  },
+  {
+    // lessonID: 3,
+    lessonName: "Advanced Arabic",
+    description: "Master the complexities of the Arabic language",
+    content: "Lesson content for Advanced Arabic",
+    languageId: 3, // Arabic language ID
+  },
+  {
     lessonName: "Introduction to Mandarin",
     description: "Learn the basics of the Mandarin language",
-    content: "Lesson content for Introduction to Mandarin",
+    content: '[{"question": "你叫什么名字？", "answer": "我叫李华。"}, {"question": "你多大了？", "answer": "我25岁。"}, {"question": "你住在哪里？", "answer": "我住在北京。"}, {"question": "你最喜欢什么颜色？", "answer": "我最喜欢蓝色。"}, {"question": "你在空闲时间喜欢做什么？", "answer": "我喜欢看书和打篮球。"}]',
     languageId: 4, // Mandarin language ID
   },
   {
@@ -185,10 +223,23 @@ const seedLessons = [
     languageId: 4, // Mandarin language ID
   },
   {
-    //   lessonID: 5,
+    // lessonID: 4,
+    lessonName: "Intermediate Mandarin",
+    description: "Expand your Mandarin language skills",
+    content: "Lesson content for Intermediate Mandarin",
+    languageId: 4, // Mandarin language ID
+  },
+  {
+    // lessonID: 4,
+    lessonName: "Advanced Mandarin",
+    description: "Master the complexities of the Mandarin language",
+    content: "Lesson content for Advanced Mandarin",
+    languageId: 4, // Mandarin language ID
+  },
+  {
     lessonName: "Introduction to French",
     description: "Learn the basics of the French language",
-    content: "Lesson content for Introduction to French",
+    content: '[{"question": "Comment t\u2019appelles tu?", "answer": "Je m\u2019appelle Marie."}, {"question": "Quel âge as-tu ?", "answer": "J\u2019ai 28 ans."}, {"question": "Où est-ce que tu habites ?", "answer": "J\u2019habite à Paris."}, {"question": "Quelle est ta couleur préférée ?", "answer": "Je préférée rouge."}, {"question": "Qu\u2019aimes-tu faire pendant ton temps libre?", "answer": "J\u2019aime lire et cuisiner."}]',
     languageId: 5, // French language ID
   },
   {
@@ -206,10 +257,37 @@ const seedLessons = [
     languageId: 5, // French language ID
   },
   {
-    //   lessonID: 6,
+    // lessonID: 5,
+    lessonName: "Intermediate French",
+    description: "Expand your French language skills",
+    content: "Lesson content for Intermediate French",
+    languageId: 5, // French language ID
+  },
+  {
+    // lessonID: 5,
+    lessonName: "Advanced French",
+    description: "Master the complexities of the French language",
+    content: "Lesson content for Advanced French",
+    languageId: 5, // French language ID
+  },
+  {
     lessonName: "Introduction to Soninke",
     description: "Learn the basics of the Soninke language",
-    content: "Lesson content for Introduction to Soninke",
+    content: '[{"question": "Kanan kono?", "answer": "Na faga Sarah."}, {"question": "Keewi duma na?", "answer": "Na faga 25 aneesi."}, {"question": "Fu yey akala?", "answer": "Na ngon Londre."}, {"question": "Kanaani boorɗe dun?", "answer": "Na boorɗe buɗɗi luundi."}, {"question": "Kewi ni nta dɔɔnin kɔnɔ?", "answer": "Na uddani kunnge ko uddu, uddu kɛ doo taliing. "}]',
+    languageId: 6, // Soninke language ID
+  },
+  {
+    // lessonID: 6,
+    lessonName: "Intermediate Soninke",
+    description: "Expand your Soninke language skills",
+    content: "Lesson content for Intermediate Soninke",
+    languageId: 6, // Soninke language ID
+  },
+  {
+    // lessonID: 6,
+    lessonName: "Advanced Soninke",
+    description: "Master the complexities of the Soninke language",
+    content: "Lesson content for Advanced Soninke",
     languageId: 6, // Soninke language ID
   },
   {
@@ -227,6 +305,7 @@ const seedLessons = [
     languageId: 6, // Soninke language ID
   },
 ];
+
 
 const seedQuizzes = [
   {
