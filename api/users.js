@@ -52,6 +52,22 @@ router.put("/:email", async (req, res, next) => {
   }
 });
 
+router.put("/updateAvatar/:id", async (req, res, next) => {
+  try { const { id } = req.params;
+    const user = await User.findByPk(id);
+
+    if (user) {
+      await user.update({ avatarId: req.body.avatarId });
+      res.status(200).json(user);
+      await user.save();
+    } else {
+      res.status(404).send("Unsuccessful in updating Avatar");
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 //delete user
 router.delete("/:email", async (req, res, next) => {
   try {
@@ -67,5 +83,7 @@ router.delete("/:email", async (req, res, next) => {
     next(error);
   }
 });
+
+
 
 module.exports = router;
