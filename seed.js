@@ -180,8 +180,7 @@ const seedQuizzes = [
 
 const seedQuizQuestions = [
   {
-    //   ID: 1,
-    // quizID: 1, // Quiz ID for English Quiz
+    quizId: 1, // Quiz ID for English Quiz
     question: "What is the capital of England?",
     quizChoice: "A) London\nB) Paris\nC) Madrid\nD) Rome",
     correctChoice: "A",
@@ -189,8 +188,24 @@ const seedQuizQuestions = [
     pointWorth: 10,
   },
   {
-    //   ID: 2,
-    //quizID: 2, // Quiz ID for Spanish Quiz
+    quizId: 1, // Quiz ID for English Quiz
+    question: "I ____ to the store to buy some groceries.",
+    quizChoice: "A) go\nB) goes\nC) went\nD) gone",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 1, // Quiz ID for English Quiz
+    question: "She is an ____ student and always gets top grades.",
+    quizChoice:
+      "A) intelligent\nB) intelligible\nC) intellectual\nD) intensive",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 2, // Quiz ID for Spanish Quiz
     question: "How do you say 'hello' in Spanish?",
     quizChoice: "A) Hola\nB) Bonjour\nC) Salut\nD) Konnichiwa",
     correctChoice: "A",
@@ -198,8 +213,23 @@ const seedQuizQuestions = [
     pointWorth: 10,
   },
   {
-    //   ID: 3,
-    // quizID: 3, // Quiz ID for Arabic Quiz
+    quizId: 2, // Quiz ID for Spanish Quiz
+    question: "What is the Spanish word for 'cat'?",
+    quizChoice: "A) Perro\nB) Gato\nC) Vaca\nD) Pájaro",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 2, // Quiz ID for Spanish Quiz
+    question: "Which of the following means 'book' in Spanish?",
+    quizChoice: "A) Coche\nB) Libro\nC) Silla\nD) Casa",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 3, // Quiz ID for Arabic Quiz
     question: "What is the writing direction of Arabic?",
     quizChoice: "A) Left to right\nB) Right to left\nC) Top to bottom",
     correctChoice: "B",
@@ -207,8 +237,23 @@ const seedQuizQuestions = [
     pointWorth: 10,
   },
   {
-    //   ID: 4,
-    // quizID: 4, // Quiz ID for Mandarin Quiz
+    quizId: 3, // Quiz ID for Arabic Quiz
+    question: "What is the Arabic word for 'house'?",
+    quizChoice: "A) مدرسة\nB) مطعم\nC) منزل\nD) حديقة",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 3, // Quiz ID for Arabic Quiz
+    question: "ما هو اللون _____؟ What is the color?",
+    quizChoice: "A) Red\nB) Yellow\nC) Blue\nD) Green",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 4, // Quiz ID for Mandarin Quiz
     question: "How many tones does Mandarin Chinese have?",
     quizChoice: "A) 2\nB) 4\nC) 6\nD) 8",
     correctChoice: "B",
@@ -216,8 +261,25 @@ const seedQuizQuestions = [
     pointWorth: 10,
   },
   {
-    //   ID: 5,
-    // quizID: 5, // Quiz ID for French Quiz
+    quizId: 4, // Quiz ID for Mandarin Quiz
+    question: "What is the Mandarin word for 'apple'?",
+    quizChoice:
+      "A) 香蕉 (xiāngjiāo)\nB) 西瓜 (xīguā)\nC) 苹果 (píngguǒ)\nD) 橘子 (júzi)",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 4, // Quiz ID for Mandarin Quiz
+    question: "What is the Mandarin word for 'goodbye'?",
+    quizChoice:
+      "A) 你好 (nǐ hǎo)\nB) 再见 (zàijiàn)\nC) 谢谢 (xièxiè)\nD) 对不起 (duìbùqǐ)",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 5, // Quiz ID for French Quiz
     question: "What is the French word for 'goodbye'?",
     quizChoice: "A) Bonjour\nB) Au revoir\nC) Merci\nD) Oui",
     correctChoice: "B",
@@ -225,15 +287,47 @@ const seedQuizQuestions = [
     pointWorth: 10,
   },
   {
-    //   ID: 6,
-    //  quizID: 6, // Quiz ID for Soninke Quiz
+    quizId: 5, // Quiz ID for French Quiz
+    question: "What is the French word for 'yes'?",
+    quizChoice: "A) Oui\nB) Non\nC) Peut-être\nD) Merci",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 5, // Quiz ID for French Quiz
+    question: "What is the French word for 'water'?",
+    quizChoice: "A) Pain\nB) Vin\nC) Lait\nD) Eau",
+    correctChoice: "D",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 6, // Quiz ID for Soninke Quiz
     question: "What country is Soninke primarily spoken in?",
     quizChoice: "A) Senegal\nB) Mali\nC) Guinea\nD) Gambia",
     correctChoice: "A",
     userScore: 0,
     pointWorth: 10,
   },
+  {
+    quizId: 6, // Quiz ID for Soninke Quiz
+    question: "What is the Soninke word for 'sun'?",
+    quizChoice: "A) Jaabi\nB) Siso\nC) Be\nD) Gara",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    quizId: 6, // Quiz ID for Soninke Quiz
+    question: "What is the Soninke word for 'money'?",
+    quizChoice: "A) Wolof\nB) Na\nC) Jiri\nD) Kopu",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
 ];
+
 
 const seedRoles = [
   {
@@ -289,7 +383,7 @@ const seedTests = [
 const seedTestQuestions = [
   {
     //   ID: 1,
-    // testID: 1, // Test ID for English Test
+    testId: 1, // Test ID for English Test
     question: "What is the plural form of 'book'?",
     testChoice: "A) books\nB) bookes\nC) book's\nD) bookes'",
     correctChoice: "A",
@@ -297,8 +391,27 @@ const seedTestQuestions = [
     pointWorth: 10,
   },
   {
+    //   ID: 1,
+    testId: 1, // Test ID for English Test
+    question: "If you love cats, what will you call yourself in English?",
+    testChoice: "A) Cat\nB) Cats\nC) Cat Person\nD) Cat People",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    //   ID: 1,
+    testId: 1, // Test ID for English Test
+    question: "Who wrote the play 'Romeo and Juliet'?",
+    testChoice:
+      "A) George Orwell\nB) Jane Austen\nC) Charles Dickens\nD) William Shakespeare",
+    correctChoice: "D",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
     //   ID: 2,
-    // testID: 2, // Test ID for Spanish Test
+    testId: 2, // Test ID for Spanish Test
     question: "Which verb means 'to eat' in Spanish?",
     testChoice: "A) beber\nB) escribir\nC) comer\nD) hablar",
     correctChoice: "C",
@@ -306,10 +419,124 @@ const seedTestQuestions = [
     pointWorth: 10,
   },
   {
+    //   ID: 2,
+    testId: 2, // Test ID for Spanish Test
+    question: "Which verb means 'to drink' in Spanish?",
+    testChoice: "A) comer\nB) beber\nC) dormir\nD) bailar",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    //   ID: 2,
+    testId: 2, // Test ID for Spanish Test
+    question: "Which verb means 'to write' in Spanish?",
+    testChoice: "A) leer\nB) escribir\nC) escuchar\nD) bailar",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
     //   ID: 3,
-    // testID: 3, // Test ID for Arabic Test
+    testId: 3, // Test ID for Arabic Test
     question: "How do you write 'hello' in Arabic?",
     testChoice: "A) مرحبا\nB) صباح الخير\nC) شكرا\nD) مع السلامة",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    //   ID: 3,
+    testId: 3, // Test ID for Arabic Test
+    question: "Which verb means 'to eat' in Arabic?",
+    testChoice: "A) شرب\nB) كتب\nC) قرأ\nD) أكل",
+    correctChoice: "D",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    //   ID: 3,
+    testId: 3, // Test ID for Arabic Test
+    question: "Which verb means 'to drink' in Arabic?",
+    testChoice: "A) أكل\nB) شرب\nC) نام\nD) رقص",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 4, // Test ID for Mandarin Test
+    question: "How do you write 'hello' in Mandarin?",
+    testChoice: "A) 你好\nB) 再见\nC) 谢谢\nD) 对不起",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 4, // Test ID for Mandarin Test
+    question:
+      "Which dynasty is known as the 'First Emperor' in Chinese history?",
+    testChoice:
+      "A) 唐朝 (Táng Cháo)\nB) 秦朝 (Qín Cháo)\nC) 宋朝 (Sòng Cháo)\nD) 明朝 (Míng Cháo)",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 4, // Test ID for Mandarin Test
+    question: "Who was the founder of the Ming Dynasty in Chinese history?",
+    testChoice:
+      "A) 李白 (Lǐ Bái)\nB) 孔子 (Kǒng Zǐ)\nC) 朱元璋 (Zhū Yuánzhāng)\nD) 刘备 (Liú Bèi)",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 5, // Test ID for French Test
+    question: "How do you express 'late for work' in French?",
+    testChoice:
+      "A) Bonjour\nB) En retard pour le travail\nC) Merci\nD) Excusez-moi",
+    correctChoice: "B",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 5, // Test ID for French Test
+    question: "What is the French word for 'blue'?",
+    testChoice: "A) rouge\nB) vert\nC) jaune\nD) bleu",
+    correctChoice: "D",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 5, // Test ID for French Test
+    question: "Which verb means 'to eat' in French?",
+    testChoice: "A) lire\nB) écrire\nC) boire\nD) manger",
+    correctChoice: "D",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 6, // Test ID for Soninke Test
+    question: "How do you write 'thank you' in Soninke?",
+    testChoice: "A) Nagode\nB) Nanga def\nC) Djamano\nD) Ani sana",
+    correctChoice: "C",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 6, // Test ID for Soninke Test
+    question: "Kelenɛ ye di wankondiriniw kaasugolonnan dinga cisse?",
+    testChoice:
+      "A) Dinga Cisse\nB) Sundiata Keita\nC) Mansa Musa\nD) Sonni Ali",
+    correctChoice: "A",
+    userScore: 0,
+    pointWorth: 10,
+  },
+  {
+    testId: 6, // Test ID for Soninke Test
+    question: "Kelenɛ ye di jula fe dalatɛnnan dinga Ghana?",
+    testChoice:
+      "A) Ghana Empire\nB) Mali Empire\nC) Songhai Empire\nD) Kanem-Bornu Empire",
     correctChoice: "A",
     userScore: 0,
     pointWorth: 10,

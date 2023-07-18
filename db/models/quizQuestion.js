@@ -3,10 +3,10 @@ const db =  require("../db.js")
 
 //Our test Questions table with the following attributes for each
 const QuizQuestion = db.define("QuizQuestion", {
-  // quizID: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  // },
+  quizId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   question: {
     type: DataTypes.TEXT,
     allowNull: false,
