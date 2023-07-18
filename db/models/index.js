@@ -8,6 +8,7 @@ const Test = require("./test.js");
 const Role = require("./role.js");
 const TestQuestion = require("./testQuestion.js");
 const QuizQuestion = require("./quizQuestion.js");
+const Avatar = require("./avatar.js");
 
 // Our Associations: many-to-many
 Achievement.belongsToMany(User, { through: "UserAchievement" }); //M:M
@@ -30,6 +31,9 @@ Role.hasMany(User, { foreignKey: "roleId" });
 User.belongsTo(Role);
 //User.belongsToMany(TestQuestion, {through: TestQuestion, as: 'testsQuestions', foreignKey:'userId'});
 // User.belongsToMany(QuizQuestion, {through: QuizQuestion, as: 'quizQuestions', foreignKey:'userId'});
+
+Avatar.hasMany(User, { foreignKey: "avatarId" });
+User.belongsTo(Avatar);
 
 User.belongsToMany(User, { through: "Friendship", as: "friends" });
 
@@ -58,5 +62,6 @@ module.exports = {
   Role,
   TestQuestion,
   QuizQuestion,
+  Avatar,
   //  Friendship,
 };

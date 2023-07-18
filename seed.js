@@ -9,6 +9,8 @@ const {
   Test,
   TestQuestion,
   User,
+  Avatar, 
+
 } = require("./db/models");
 
 const seedUsers = [
@@ -1370,6 +1372,33 @@ const seedTestQuestions = [
   },
 ];
 
+const seedImages = [
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?seed=Felix&backgroundColor=fc8941",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundType=gradientLinear&mouth=smileTeeth&eyes=wink",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundColor=fcee2d&mouth=tongueOut&eyes=tearDrop",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundColor=5de8fa&mouth=kissHeart&eyes=wink",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundColor=f83a3a&mouth=shout&eyes=glasses&translateY=-25",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundColor=bd7bf3&mouth=pissed&eyes=shades&translateX=-25",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundColor=52cf5d&mouth=drip&eyes=sleepClose&rotate=270",
+  },
+  {
+    imageURL: "https://api.dicebear.com/6.x/fun-emoji/svg?backgroundColor=e0218a&mouth=cute&eyes=cute",
+  }
+];
+
 const seed = async () => {
   await Achievement.bulkCreate(seedAchievements);
   await User.bulkCreate(seedUsers);
@@ -1378,6 +1407,7 @@ const seed = async () => {
   await Quiz.bulkCreate(seedQuizzes);
   await QuizQuestion.bulkCreate(seedQuizQuestions);
   await Role.bulkCreate(seedRoles);
+  await Avatar.bulkCreate(seedImages);
   await Test.bulkCreate(seedTests);
   await TestQuestion.bulkCreate(seedTestQuestions);
 
