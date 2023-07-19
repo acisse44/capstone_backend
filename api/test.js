@@ -33,6 +33,21 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  try {
+    const testId = req.params.id;
+    const [rowsUpdated, [updatedTest]] = await Test.update(req.body, {
+      returning: true,
+      where: { id: testId },
+    });
+    updatedTest
+      ? res.status(200).json(updatedTest)
+      : res.status(404).send("Test not found");
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const test = await Test.destroy({ where: { id: req.params.id } });
