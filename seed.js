@@ -19,12 +19,14 @@ const seedUsers = [
     username: "user1",
     password: "password1",
     points: 0,
+    isAdmin: false
   },
   {
     email: "user2@gmail.com",
     username: "user2",
     password: "password2",
     points: 0,
+    isAdmin: false
   },
 ];
 

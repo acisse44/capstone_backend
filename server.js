@@ -1,21 +1,20 @@
 const express = require("express");
+const app = express();
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const passport = require("passport");
 const cors = require("cors");
 const db = require("./db");
-const app = express();
 const http = require('http');
-const server = http.createServer(app); //wraps app in server, so we need server.listen to use it 
+const server = http.createServer(app); //wraps app in server, so we need server.listen to use it
 const { Server } = require("socket.io");
+const { User } = require("./db/models");
 // const io = new Server(server);
-
 require("dotenv").config();
-
 
 const sessionStore = new SequelizeStore({ db });
 
-//initialize, letting our frontend page access it
+// initialize, letting our frontend page access it
 const io = new Server(server, {
   cors: {
     origin: `http://localhost:3000`,
@@ -23,7 +22,7 @@ const io = new Server(server, {
   },
 });
 
-//socket io setup
+// socket io setup
 io.on('connection', (socket) => {
   // socket.on('chat message', (msg) => {
   //   io.emit('chat message', msg);
@@ -31,8 +30,8 @@ io.on('connection', (socket) => {
   // });
 
   //create socket event for joining a room to then link to frontend
-  //data is the roomid being passed in from frontend 
-  //socket.join is a function from socket 
+  //data is the roomid being passed in from frontend
+  //socket.join is a function from socket
   // socket.on("join_room", (data) => {
   //   socket.join(data);
   //   console.log(`user joined room + ${data}`)
@@ -50,74 +49,113 @@ io.on('connection', (socket) => {
   })
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    credentials: true,
+  })
 
-//Helper functions
-const serializeUser = (user, done) => done(null, user.id);
-const deserializeUser = async (id, done) => {
-  try {
-    const user = await db.models.user.findByPk(id);
-    done(null, user);
-  } catch (error) {
-    done(error);
+);
+
+app.use(
+  session({
+    name: "TESTAPP",
+    secret: "capstone",
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 8 * 60 * 60 * 1000, // 8 hours
+    },
   }
-};
+  )
+)
 
-//Configs
-const configSession = () => ({
-  secret: "capstone",
-  store: sessionStore,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 2 * 60 * 60 * 1000,
-  }, // 8 hours
-  httpOnly: true,
+passport.serializeUser((user, done) => {
+  done(null, user.id);
 });
 
-// Middleware setup
-const setupMiddleware = (app) => {
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(
-    cors({ //solvinng cors issues, specifying credentials and settings 
-      origin: "http://localhost:3000", // allow to server to accept request from different origin
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      credentials: true,
-    })
-  );
-  app.use(session(configSession()));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  return app;
-};
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findByPk(id);
 
-// Passport Setup
-const setupPassport = () => {
-  passport.serializeUser(serializeUser);
-  passport.deserializeUser(deserializeUser);
-};
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+})
 
-// Routes
-const setupRoutes = (app) => {
-  app.use("/api", require("./api"));
-  app.use("/auth", require("./auth"));
-  app.use("/chat", require ("./chat")); //reach our chat page route
-};
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Start server and sync the db
-const startServer = async (app, port) => {
+app.use("/api", require("./api"));
+app.use("/auth", require("./auth"));
+app.use("/chat", require ("./chat"));
+
+const dbSetup = async () => {
   await db.sync();
-  server.listen(port, () => console.log(`Server is on port:${port}`));
-  return app;
+  sessionStore.sync();
 };
+dbSetup();
+server.listen(8080, () => console.log(`Server is running on port: 8080`));
 
-// Configure all functions in one major funtion
-const configureApp = async (port) => {
-  setupPassport();
-  setupMiddleware(app);
-  await sessionStore.sync();
-  setupRoutes(app);
-  return startServer(app, port);
-};
+// const express = require("express");
+// const app = express();
+// const session = require("express-session");
+// const SequelizeStore = require("connect-session-sequelize")(session.Store);
+// const passport = require("passport");
+// const cors = require("cors");
+// const db = require("./db");
+// const { User } = require("./db/models");
+// const port = 8080;
+// require("dotenv").config();
+// const sessionStore = new SequelizeStore({ db });
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000/",
+//     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+//     credentials: true,
+//   })
+// );
+// app.use(
+//   session({
+//     name: "TESTAPP",
+//     secret: "ttp2023summer",
+//     store: sessionStore,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       maxAge: 8 * 60 * 60 * 1000, // 8 hours
+//     },
+//   })
+// );
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
+// passport.deserializeUser(async (id, done) => {
+//   try {
+//     const user = await User.findByPk(id);
 
-module.exports = configureApp(8080);
+//     done(null, user);
+//   } catch (err) {
+//     done(err);
+//   }
+// });
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// app.use("/api", require("./api"));
+// app.use("/auth", require("./auth"));
+
+// const dbSetup = async () => {
+//   await db.sync();
+//   sessionStore.sync();
+// };
+// dbSetup();
+// app.listen(port, () => console.log(`Server is running on port:${port}`));
