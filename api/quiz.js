@@ -36,8 +36,8 @@ router.post("/", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const Quiz = await Quiz.destroy({ where: { id: req.params.id } });
-    Quiz
+    const quiz = await Quiz.destroy({ where: { id: req.params.id } });
+    quiz
       ? res.status(200).send("Successfully removed")
       : res.status(404).send("Quiz Not Found");
   } catch (error) {
