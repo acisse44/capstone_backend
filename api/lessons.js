@@ -49,8 +49,8 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const Lesson = await Lesson.destroy({ where: { id: req.params.id } });
-    Lesson
+    const lesson = await Lesson.destroy({ where: { id: req.params.id } });
+    lesson
       ? res.status(200).send("Successfully removed")
       : res.status(404).send("Lesson Not Found");
   } catch (error) {
