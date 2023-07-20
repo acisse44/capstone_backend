@@ -2,11 +2,26 @@ const router = require("express").Router();
 const { User } = require("../db/models");
 
 //Get all users
-router.get("/", async (request, response, next) => {
+router.get("/allUsers", async (req, res, next) => {
   try {
     const allUsers = await User.findAll({ attributes: ["id", "email"] });
-    response.status(200).json(allUsers);
+    res.status(200).json(allUsers);
   } catch (error) {
+    next(error);
+  }
+});
+
+//Get user by id
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByPk(id)
+
+    user
+      ? res.status(200).json(user)
+      : res.status(404).send("user not Found");
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 });

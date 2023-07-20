@@ -18,20 +18,17 @@ class User extends Model {
   // Salt aUYqF5jlAZVseb9gxB8e9Q==
 
   // instance method to check pw
+  // async correctPassword(pwAttempt) {
+  //   return User.encryptPassword(pwAttempt, this.salt) === this.password;
+  // }
   async correctPassword(pwAttempt) {
-    return User.encryptPassword(pwAttempt, this.salt) === this.password;
+    return (await User.encryptPassword(pwAttempt, this.salt)) === this.password;
   }
 }
 
 //Our users table with the following attributes for each
 User.init(
   {
-    // userID: {
-    //   type: DataTypes.INTEGER,
-    //   autoIncrement: true,
-    //   primaryKey: true,
-    //   allowNull: false,
-    // },
     email: {
       type: DataTypes.STRING,
       unique: true,
@@ -44,15 +41,16 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
     password: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     points: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
     salt: {
       type: DataTypes.STRING,
@@ -61,26 +59,11 @@ User.init(
       // For OAuth purposes
       type: DataTypes.STRING,
     },
-    // isAdmin: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    // },
-    // friend: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // language: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // achievement: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
-    // roleID: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
   },
   {
     sequelize: db,
