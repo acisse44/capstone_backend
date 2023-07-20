@@ -33,6 +33,20 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  try {
+    const quizQuestionId = req.params.id;
+    const [rowsUpdated, [updatedQuiz]] = await QuizQuestion.update(req.body, {
+      returning: true,
+      where: { id: quizQuestionId },
+    });
+    updatedQuiz
+      ? res.status(200).json(updatedQuiz)
+      : res.status(404).send("Quiz not found");
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.delete("/:id", async (req, res, next) => {
   try {

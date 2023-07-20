@@ -23,11 +23,27 @@ router.get("/:id", async (request, response, next) => {
 });
 
 router.post("/", async (req, res, next) => {
+ console.log("req.body", req.body);
   try {
     const newTestQuestion = await TestQuestion.create(req.body);
     newTestQuestion
       ? res.status(200).json(newTestQuestion)
       : res.status(404).send("Unsuccessful In Adding TestQuestion");
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const testQuestionId = req.params.id;
+    const [rowsUpdated, [updatedTest]] = await TestQuestion.update(req.body, {
+      returning: true,
+      where: { id: testQuestionId },
+    });
+    updatedTest
+      ? res.status(200).json(updatedTest)
+      : res.status(404).send("Test not found");
   } catch (error) {
     next(error);
   }
