@@ -41,6 +41,7 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
     password: {
@@ -60,7 +61,8 @@ User.init(
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      // allowNull: false,
+      defaultValue: false,
+      allowNull: false,
     },
   },
   {

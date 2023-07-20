@@ -19,7 +19,7 @@ const seedUsers = [
     username: "user1",
     password: "password1",
     points: 0,
-    isAdmin: false
+    isAdmin: true
   },
   {
     email: "user2@gmail.com",
@@ -28,6 +28,15 @@ const seedUsers = [
     points: 0,
     isAdmin: false
   },
+ {
+
+    email: "rana@aminata.com",
+    username: "ranaminata",
+    password: "54321",
+    points: 0,
+    isAdmin: false
+},
+
 ];
 
 const seedAchievements = [
