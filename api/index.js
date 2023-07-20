@@ -13,7 +13,6 @@ router.use("/quiz", require("./quiz"));
 router.use("/quizQuestion", require("./quizQuestion"));
 router.use("/test", require("./test"));
 router.use("/testQuestion", require("./testQuestion"));
-router.use("/avatars", require("./avatars"));
 
 router.use((req, res, next) => {
   const error = new Error("404 Not Found");
