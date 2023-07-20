@@ -9,7 +9,7 @@ const {
   Test,
   TestQuestion,
   User,
-  Avatar, 
+  Avatar,
 
 } = require("./db/models");
 
@@ -109,17 +109,15 @@ const seedLessons = [
     languageId: 1, // English language ID
   },
   {
-    // lessonID: 1,
     lessonName: "Intermediate English",
     description: "Expand your English language skills",
-    content: "Lesson content for Intermediate English",
+    content: '[{"question": "What are some common phrasal verbs?", "answer": "Some common phrasal verbs include: go on, take off, put up with, and get over."}, {"question": "How can I improve my pronunciation?", "answer": "You can improve your pronunciation by practicing regularly and listening to native speakers."}, {"question": "What are the past tense forms of irregular verbs?", "answer": "Some examples of irregular verbs in the past tense are: go (went), eat (ate), and come (came)."}]',
     languageId: 1, // English language ID
   },
   {
-    // lessonID: 1,
     lessonName: "Advanced English",
     description: "Master the complexities of the English language",
-    content: "Lesson content for Advanced English",
+    content: '[{"question": "What are some advanced grammar topics?", "answer": "Some advanced grammar topics include: subjunctive mood, conditional sentences, and relative clauses."}, {"question": "How can I expand my vocabulary?", "answer": "You can expand your vocabulary by reading extensively, learning new words daily, and using a thesaurus."}, {"question": "What are some common idiomatic expressions?", "answer": "Some common idiomatic expressions are: break a leg, hit the nail on the head, and piece of cake."}]',
     languageId: 1, // English language ID
   },
   {
@@ -129,17 +127,15 @@ const seedLessons = [
     languageId: 2, // Spanish language ID
   },
   {
-    // lessonID: 2,
     lessonName: "Intermediate Spanish",
     description: "Expand your Spanish language skills",
-    content: "Lesson content for Intermediate Spanish",
+    content: '[{"question": "¿Cómo se dice en español?", "answer": "Se dice \'gracias\'."}, {"question": "¿Cuáles son los tiempos verbales en español?", "answer": "Los tiempos verbales en español incluyen: presente, pasado, futuro, pretérito, imperativo, entre otros."}, {"question": "¿Dónde se habla español como lengua materna?", "answer": "El español es lengua materna en varios países de América Latina y España."}]',
     languageId: 2, // Spanish language ID
   },
   {
-    // lessonID: 2,
     lessonName: "Advanced Spanish",
     description: "Master the complexities of the Spanish language",
-    content: "Lesson content for Advanced Spanish",
+    content: '[{"question": "¿Cuáles son las diferencias entre el español de España y el español de América Latina?", "answer": "Las diferencias incluyen el uso de algunas palabras, la pronunciación y algunos aspectos gramaticales."}, {"question": "¿Cuál es la historia del español?", "answer": "El español se originó en la península ibérica y se extendió a través de la colonización a América y otras partes del mundo."}, {"question": "¿Cómo se dice \'computadora\' en español?", "answer": "En español, se dice \'computadora\' en algunos países y \'ordenador\' en otros."}]',
     languageId: 2, // Spanish language ID
   },
   {
@@ -149,17 +145,15 @@ const seedLessons = [
     languageId: 3, // Arabic language ID
   },
   {
-    // lessonID: 3,
     lessonName: "Intermediate Arabic",
     description: "Expand your Arabic language skills",
-    content: "Lesson content for Intermediate Arabic",
+    content: '[{"question": "ما هي بعض الصيغ النحوية في اللغة العربية؟", "answer": "بعض الصيغ النحوية في اللغة العربية تشمل: الفعل المضارع، الفعل الماضي، المبالغة والتفضيل، وصيغة الأمر."}, {"question": "ما هي القراءة الصحيحة للحروف العربية؟", "answer": "يمكنك تحسين قراءتك الصحيحة للحروف العربية من خلال التمارين المنتظمة والتطبيق العملي."}, {"question": "ما هي بعض الكلمات العربية المستعارة في اللغات الأخرى؟", "answer": "بعض الكلمات العربية المستعارة تشمل: قطن، سكندر، جزر، صفر، وغيرها."}]',
     languageId: 3, // Arabic language ID
   },
   {
-    // lessonID: 3,
     lessonName: "Advanced Arabic",
     description: "Master the complexities of the Arabic language",
-    content: "Lesson content for Advanced Arabic",
+    content: '[{"question": "ما هي الأدبيات العربية المشهورة؟", "answer": "الأدب العربي له تاريخ طويل ومتنوع ويشمل العديد من الأعمال الكلاسيكية والمعاصرة."}, {"question": "ما هي اللهجات العربية المختلفة؟", "answer": "يوجد العديد من اللهجات العربية التي تختلف من بلد لآخر وتشمل لهجات مصر، السعودية، العراق، اللبنانية، وغيرها."}, {"question": "كيف يمكنني تعلم الخط العربي؟", "answer": "يمكنك تعلم الخط العربي عن طريق ممارسة الكتابة واستخدام الأدوات الصحيحة."}]',
     languageId: 3, // Arabic language ID
   },
   {
@@ -169,37 +163,33 @@ const seedLessons = [
     languageId: 4, // Mandarin language ID
   },
   {
-    // lessonID: 4,
     lessonName: "Intermediate Mandarin",
     description: "Expand your Mandarin language skills",
-    content: "Lesson content for Intermediate Mandarin",
+    content: '[{"question": "怎样正确发音汉语音节？", "answer": "正确发音汉语音节需要多练习，特别是声母和韵母的组合。"}, {"question": "汉语有多少种方言？", "answer": "汉语有很多种方言，因为中国地域广阔，各地的语言有些许差异。"}, {"question": "怎样在汉语中正确使用量词？", "answer": "在汉语中，数量词要与量词一起使用，要根据物品的性质选择合适的量词。"}]',
     languageId: 4, // Mandarin language ID
   },
   {
-    // lessonID: 4,
     lessonName: "Advanced Mandarin",
     description: "Master the complexities of the Mandarin language",
-    content: "Lesson content for Advanced Mandarin",
+    content: '[{"question": "怎样用汉语进行交流？", "answer": "用汉语进行交流要注意礼貌和文化习惯，了解不同场合使用不同的礼节。"}, {"question": "如何提高听力和口语水平？", "answer": "提高听力和口语水平要多听多说，可以参与语言交换或找外教进行口语练习。"}, {"question": "怎样写汉字？", "answer": "写汉字需要掌握笔画和笔顺，多写多练习，可以使用汉字练习纸。"}]',
     languageId: 4, // Mandarin language ID
   },
   {
     lessonName: "Introduction to French",
     description: "Learn the basics of the French language",
-    content: '[{"question": "Comment t\u2019appelles tu?", "answer": "Je m\u2019appelle Marie."}, {"question": "Quel âge as-tu ?", "answer": "J\u2019ai 28 ans."}, {"question": "Où est-ce que tu habites ?", "answer": "J\u2019habite à Paris."}, {"question": "Quelle est ta couleur préférée ?", "answer": "Je préférée rouge."}, {"question": "Qu\u2019aimes-tu faire pendant ton temps libre?", "answer": "J\u2019aime lire et cuisiner."}]',
+    content: '[{"question": "Comment t\u2019appelles-tu ?", "answer": "Je m\u2019appelle Marie."}, {"question": "Quel âge as-tu ?", "answer": "J\u2019ai 28 ans."}, {"question": "Où est-ce que tu habites ?", "answer": "J\u2019habite à Paris."}, {"question": "Quelle est ta couleur préférée ?", "answer": "Je préfère le rouge."}, {"question": "Qu\u2019aimes-tu faire pendant ton temps libre?", "answer": "J\u2019aime lire et cuisiner."}]',
     languageId: 5, // French language ID
   },
   {
-    // lessonID: 5,
     lessonName: "Intermediate French",
     description: "Expand your French language skills",
-    content: "Lesson content for Intermediate French",
+    content: '[{"question": "Comment exprimer une opinion en français ?", "answer": "Pour exprimer une opinion en français, on peut utiliser des expressions comme « Je pense que », « À mon avis », ou « Selon moi »."}, {"question": "Quels sont les temps verbaux en français ?", "answer": "Les temps verbaux en français incluent : le présent, l\u2019imparfait, le futur, le passé composé, et bien d\u2019autres."}, {"question": "Où est-ce que le français est parlé comme langue officielle ?", "answer": "Le français est la langue officielle de nombreux pays francophones en Afrique, en Amérique, et en Europe."}]',
     languageId: 5, // French language ID
   },
   {
-    // lessonID: 5,
     lessonName: "Advanced French",
     description: "Master the complexities of the French language",
-    content: "Lesson content for Advanced French",
+    content: '[{"question": "Quels sont les auteurs français célèbres ?", "answer": "La littérature française compte de nombreux auteurs célèbres tels que Victor Hugo, Marcel Proust, et Albert Camus."}, {"question": "Quels sont les accents régionaux en français ?", "answer": "Il existe de nombreux accents régionaux en français, tels que l\u2019accent du sud de la France, l\u2019accent québécois, et bien d\u2019autres."}, {"question": "Comment forme-t-on le subjonctif en français ?", "answer": "Le subjonctif en français se forme à partir de la troisième personne du pluriel du présent de l\u2019indicatif."}]',
     languageId: 5, // French language ID
   },
   {
@@ -209,17 +199,15 @@ const seedLessons = [
     languageId: 6, // Soninke language ID
   },
   {
-    // lessonID: 6,
     lessonName: "Intermediate Soninke",
     description: "Expand your Soninke language skills",
-    content: "Lesson content for Intermediate Soninke",
+    content: '[{"question": "Men koɗo ni jiɗin-fon?", "answer": "Men ɗumɗo koɗon kadi maa koɗon puɗɗi ko ɗuum faggudu."}, {"question": "Ko men mbiyee ka dumɗo?", "answer": "Men mbiyi, dumɗo e puɗɗi ko ɗuum koɗon haa ɗum kadi puɗɗi ka ɗuum. "}, {"question": "Ko men kadii kanndi, baɗɗo e boofa ɗum?", "answer": "ɗuum men kadii kanndi, baɗɗo e ɗuum waawi kanndo-ɗaa kadi men ɗumɗo maa."}]',
     languageId: 6, // Soninke language ID
   },
   {
-    // lessonID: 6,
     lessonName: "Advanced Soninke",
     description: "Master the complexities of the Soninke language",
-    content: "Lesson content for Advanced Soninke",
+    content: '[{"question": "Maa ngoniyaaje puɗɗi?", "answer": "Puɗɗi maɓɓe maa ngoniyaaje yimɓe e yimɓe ngoniyaaje weltaare maɓɓe."}, {"question": "Men kaɗɗiti ka dumɗo?", "answer": "Men dumɗo ɗum maa kaɗɗiti, ngam men ko mum kaɗɗiti dumɗo maa."}, {"question": "Ko men kadii waɗi kaɗɗiti dumɗo?", "answer": "Men kadii waɗi kaɗɗiti dumɗo e puɗɗi koɗon haa dumɗo."}]',
     languageId: 6, // Soninke language ID
   },
 ];
