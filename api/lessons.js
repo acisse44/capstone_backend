@@ -32,10 +32,25 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  try {
+    const lessonId = req.params.id;
+    const [rowsUpdated, [updatedLesson]] = await Lesson.update(req.body, {
+      returning: true,
+      where: { id: lessonId },
+    });
+    updatedLesson
+      ? res.status(200).json(updatedLesson)
+      : res.status(404).send("lesson not found");
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
-    const Lesson = await Lesson.destroy({ where: { id: req.params.id } });
-    Lesson
+    const lesson = await Lesson.destroy({ where: { id: req.params.id } });
+    lesson
       ? res.status(200).send("Successfully removed")
       : res.status(404).send("Lesson Not Found");
   } catch (error) {
