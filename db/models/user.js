@@ -41,12 +41,12 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      unique: true,
+      // unique: true,
       allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     points: {
       type: DataTypes.INTEGER,
@@ -89,6 +89,18 @@ User.init(
         });
       },
     },
+    validate: {
+      googleLogIn(){
+        if(this.googleId){
+          console.log("user has google ID")
+          return;
+        } //google id - good
+        if(!this.password){
+          console.log("no password ERROR");
+          throw new Error("account not created");
+        } //not allowed
+      }
+    }
   }
 );
 
