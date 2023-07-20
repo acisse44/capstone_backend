@@ -21,7 +21,7 @@ const QuizQuestion = db.define("QuizQuestion", {
   },
   userScore: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    //allowNull: false,
   },
   pointWorth: {
     type: DataTypes.INTEGER,

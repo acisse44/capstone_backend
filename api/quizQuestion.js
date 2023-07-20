@@ -23,6 +23,7 @@ router.get("/:id", async (request, response, next) => {
 });
 
 router.post("/", async (req, res, next) => {
+  console.log("req.body", req.body);
   try {
     const newQuizQuestion = await QuizQuestion.create(req.body);
     newQuizQuestion
