@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const { User } = require("../db/models");
+const bodyParser = require("body-parser");
+
 
 //Get all users
 router.get("/allUsers", async (req, res, next) => {
@@ -67,14 +69,14 @@ router.put("/:email", async (req, res, next) => {
   }
 });
 
-router.put("/updateAvatar/:id", async (req, res, next) => {
-  try { const { id } = req.params;
+router.put("/updateAvatar/:id",  bodyParser.json(), async (req, res, next) => {
+  try { 
+    const { id } = req.params;
     const user = await User.findByPk(id);
 
     if (user) {
       await user.update({ avatarId: req.body.avatarId });
       res.status(200).json(user);
-      await user.save();
     } else {
       res.status(404).send("Unsuccessful in updating Avatar");
     }
