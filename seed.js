@@ -725,7 +725,7 @@ const seedQuizQuestions = [
   {
     quizId: 16, // Quiz ID for Beginner Soninke Quiz
     question: "What is the Soninke word for 'sun'?",
-    quizChoice: "A) Jaabi\nB) Siso\nC) Be\nD) Gara",
+    quizChoice: "A) Neh Zi\nB) Kiyeh\nC) Biteh\nD) Kanmeh",
     correctChoice: "B",
     userScore: 0,
     pointWorth: 10,
@@ -733,7 +733,7 @@ const seedQuizQuestions = [
   {
     quizId: 16, // Quiz ID for Beginner Soninke Quiz
     question: "What is the Soninke word for 'money'?",
-    quizChoice: "A) Wolof\nB) Na\nC) Jiri\nD) Kopu",
+    quizChoice: "A) Wolof\nB) Nabureh\nC) Khaleesi\nD) Kopu",
     correctChoice: "C",
     userScore: 0,
     pointWorth: 10,
@@ -741,7 +741,7 @@ const seedQuizQuestions = [
   {
     quizId: 17, // Quiz ID for Intermediate Soninke Quiz
     question: "What is the Soninke word for 'water'?",
-    quizChoice: "A) Mɔɔrɔ\nB) Bɛɛri\nC) Finndi\nD) Jiri",
+    quizChoice: "A) Maro\nB) Jii\nC) Khachi\nD) Boisson",
     correctChoice: "B",
     userScore: 0,
     pointWorth: 10,
@@ -749,16 +749,16 @@ const seedQuizQuestions = [
   {
     quizId: 17, // Quiz ID for Intermediate Soninke Quiz
     question:
-      "Identify the correct translation: 'Maɓɓe hooɓata woni a hakkunde.'",
+      "Identify the correct translation: 'Lemounou m'paye sangana selana'",
     quizChoice:
-      "A) The cat is sleeping on the roof.\nB) The sun is shining brightly.\nC) The children are playing in the garden.\nD) The dog is barking loudly.",
+      "A) The cat is sleeping on the roof.\nB) The sun is shining brightly.\nC) The children are playing outside.\nD) The dog is barking loudly.",
     correctChoice: "C",
     userScore: 0,
     pointWorth: 10,
   },
   {
     quizId: 17, // Quiz ID for Intermediate Soninke Quiz
-    question: "What does 'kuru tawii' mean in Soninke?",
+    question: "What does 'an khubareh' mean in Soninke?",
     quizChoice: "A) Good morning\nB) Thank you\nC) How are you?\nD) Excuse me",
     correctChoice: "C",
     userScore: 0,
@@ -766,7 +766,7 @@ const seedQuizQuestions = [
   },
   {
     quizId: 18, // Quiz ID for Advanced Soninke Quiz
-    question: "What does the idiom 'Kurumma jukki gosi wonaa' mean in Soninke?",
+    question: "What does the idiom 'Sabirinde m'paso nabureh' mean in Soninke?",
     quizChoice:
       "A) A friend in need is a friend indeed.\nB) Actions speak louder than words.\nC) Birds of a feather flock together.\nD) It's better to be patient than to be rich.",
     correctChoice: "D",
@@ -775,7 +775,7 @@ const seedQuizQuestions = [
   },
   {
     quizId: 18, // Quiz ID for Advanced Soninke Quiz
-    question: "Identify the correct translation: 'Hakilin wundungo faatuɓe.'",
+    question: "Identify the correct translation: 'Hanken m'paye etenu ku kata.'",
     quizChoice:
       "A) The trees are swaying in the wind.\nB) The river is flowing rapidly.\nC) The birds are singing in the sky.\nD) The fish are swimming in the lake.",
     correctChoice: "A",
@@ -785,7 +785,7 @@ const seedQuizQuestions = [
   {
     quizId: 18, // Quiz ID for Advanced Soninke Quiz
     question: "What is the equivalent of 'to dream' in Soninke?",
-    quizChoice: "A) Soso\nB) Yaala\nC) Beeli\nD) Kala",
+    quizChoice: "A) Saghu\nB) Yaala\nC) Kuyi\nD) Dembe",
     correctChoice: "C",
     userScore: 0,
     pointWorth: 10,
@@ -1293,25 +1293,25 @@ const seedTestQuestions = [
   {
     testId: 16, // Test ID for Beginner Soninke Test
     question: "How do you write 'thank you' in Soninke?",
-    testChoice: "A) Nagode\nB) Nanga def\nC) Djamano\nD) Ani sana",
+    testChoice: "A) M'bara \nB) Ini cheh\nC) Nari \nD) Anke sire",
     correctChoice: "C",
     userScore: 0,
     pointWorth: 10,
   },
   {
     testId: 16, // Test ID for Beginner Soninke Test
-    question: "Kelenɛ ye di wankondiriniw kaasugolonnan dinga cisse?",
+    question: "Anke Maa gidan yugo ni anke mani?",
     testChoice:
-      "A) Dinga Cisse\nB) Sundiata Keita\nC) Mansa Musa\nD) Sonni Ali",
+      "A) N'geh N'Negah\nB) N'geh Gidah\nC) N'geh Gogoneh\nD) N'geh Menjangeh",
     correctChoice: "A",
     userScore: 0,
     pointWorth: 10,
   },
   {
     testId: 16, // Test ID for Beginner Soninke Test
-    question: "Kelenɛ ye di jula fe dalatɛnnan dinga Ghana?",
+    question: "Mali capiali n'togo ni mani?",
     testChoice:
-      "A) Ghana Empire\nB) Mali Empire\nC) Songhai Empire\nD) Kanem-Bornu Empire",
+      "A) Bamako\nB) Djenne\nC) Djewaye\nD) Timbuktu",
     correctChoice: "A",
     userScore: 0,
     pointWorth: 10,
@@ -1319,7 +1319,7 @@ const seedTestQuestions = [
   {
     testId: 17, // Test ID for Intermediate Soninke Test
     question: "What is the Soninke word for 'water'?",
-    testChoice: "A) Maaya\nB) Koli\nC) Jina\nD) Dunia",
+    testChoice: "A) Jii\nB) Namasa\nC) Khachi\nD) Erejeh",
     correctChoice: "A",
     userScore: 0,
     pointWorth: 10,
@@ -1327,7 +1327,7 @@ const seedTestQuestions = [
   {
     testId: 17, // Test ID for Intermediate Soninke Test
     question: "What is the Soninke word for 'friend'?",
-    testChoice: "A) Anw kaani\nB) Gano\nC) Fote\nD) Kala",
+    testChoice: "A) Jageh \nB) N'Yagareh\nC) Menjangeh\nD) Lemeh",
     correctChoice: "C",
     userScore: 0,
     pointWorth: 10,
