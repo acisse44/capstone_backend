@@ -1,4 +1,6 @@
-const router = require("express").Router();
+// const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const { User } = require("../db/models");
 const bodyParser = require("body-parser");
 
@@ -84,6 +86,7 @@ router.put("/updateAvatar/:id",  bodyParser.json(), async (req, res, next) => {
     next(error);
   }
 });
+
 
 //delete user
 router.delete("/:email", async (req, res, next) => {
