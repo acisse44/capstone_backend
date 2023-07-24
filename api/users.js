@@ -1,4 +1,6 @@
-const router = require("express").Router();
+// const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const { User } = require("../db/models");
 const bodyParser = require("body-parser");
 
@@ -100,7 +102,6 @@ router.put("/updatePoints/:id", async (req, res, next) => {
     next(error);
   }
 });
-
 
 
 //delete user

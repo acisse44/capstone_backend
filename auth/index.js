@@ -97,6 +97,7 @@ router.get("/me", (req, res, next) => {
       email: req.user.email,
       username: req.user.username,
       isAdmin: req.user.isAdmin,
+      avatarId: req.user.avatarId
     });
   } catch (error) {
     console.error(error);
