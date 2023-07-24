@@ -11,8 +11,19 @@ const { Server } = require("socket.io");
 const { User } = require("./db/models");
 // const io = new Server(server);
 require("dotenv").config();
+const uri = process.env.MONGO_URI;
 
 const sessionStore = new SequelizeStore({ db });
+
+
+const mongoose = require('mongoose');
+const connectToMongo = async () => {
+ mongoose.connect(uri, await console.log("Connected to mongo `Successful")
+
+    );
+}
+
+connectToMongo();
 
 // initialize, letting our frontend page access it
 const io = new Server(server, {
