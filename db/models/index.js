@@ -35,7 +35,7 @@ User.belongsTo(Role);
 Avatar.hasMany(User, { foreignKey: "avatarId" });
 User.belongsTo(Avatar);
 
-User.belongsToMany(User, { through: "Friendship", as: "friends" });
+// User.belongsToMany(User, { through: "Friendship", as: "friends" });
 
 Test.hasMany(TestQuestion, { foreignKey: "testId" });
 TestQuestion.belongsTo(Test);
@@ -51,6 +51,16 @@ Quiz.belongsTo(Language);
 
 Language.hasMany(Test, { foreignKey: "languageId" });
 Test.belongsTo(Language);
+
+Friendship.belongsTo(User, {
+  foreignKey: 'userId1',
+  unique: false
+});
+
+Friendship.belongsTo(User, {
+  foreignKey: 'userId2',
+  unique: false
+});
 
 module.exports = {
   User,
