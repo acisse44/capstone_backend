@@ -1,6 +1,6 @@
 const User = require("./user.js");
 const Achievement = require("./achievement.js");
-//const Friendship = require("./Friendship.js");
+const Friendship = require("./Friendship.js");
 const Language = require("./language.js");
 const Lesson = require("./lesson.js");
 const Quiz = require("./quiz.js");
@@ -63,5 +63,5 @@ module.exports = {
   TestQuestion,
   QuizQuestion,
   Avatar,
-  //  Friendship,
+  Friendship,
 };
