@@ -1,12 +1,12 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db.js")
+const db = require("../db.js");
 
-//Our Friend table with the following attributes for each
 const Friendship = db.define("friendship", {
-
-
-
-
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "pending", // You can use "pending", "accepted", "rejected", etc.
+  },
 });
 
 module.exports = Friendship;
