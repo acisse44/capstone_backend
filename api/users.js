@@ -85,6 +85,24 @@ router.put("/updateAvatar/:id",  bodyParser.json(), async (req, res, next) => {
   }
 });
 
+router.put("/updatePoints/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { points } = req.body;
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    user.points = points;
+    await user.save();
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
 //delete user
 router.delete("/:email", async (req, res, next) => {
   try {
