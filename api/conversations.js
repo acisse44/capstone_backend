@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const Conversation = require("../models/Conversation");
+const Conversation = require("/Users/aminatacisse/capstone_backend/db/models/Conversation.js");
+//const Conversation = require("../../Conversation.js");
 
 //new conv
 
