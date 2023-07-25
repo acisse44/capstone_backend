@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Message = require("/Users/abedorana/capstone_backend/db/models/mongoMessage.js");
+const Message = require(process.env.MONGO_MESSAGES);
 //add
 
 router.post("/", async (req, res) => {
