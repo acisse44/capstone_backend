@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 //Get all users
 router.get("/allUsers", async (req, res, next) => {
   try {
-    const allUsers = await User.findAll({ attributes: ["id", "email"] });
+    const allUsers = await User.findAll({ attributes: ["id", "email", "username"] });
     res.status(200).json(allUsers);
   } catch (error) {
     next(error);
@@ -118,16 +118,22 @@ router.get("/friends/:id", async (request, response, next) => {
 });
 
 //add friend 
-router.post("/addfriend", async (request, response, next) => {
-  const { userId1, userId2 } = request.body;
+router.post("/addfriend/:userId1/:userId2", async (request, response, next) => {
+  //const { userId1, userId2 } = request.body;
+  const { userId1, userId2 } = request.params;
   try {
-    const friendship = await Friendship.create({
-      userId1,
-      userId2,
-      accepted: "false"
+    const searchExist = await Friendship.findOne({
+      where: { userId1: userId1} ,
+      where: { userId2: userId2}, 
     });
-
-    response.status(201).json(friendship);
+    if(!searchExist){
+      const friendship = await Friendship.create({
+        userId1,
+        userId2,
+        accepted: "false"
+      });
+      response.status(201).json(friendship);
+    }
   } catch (error) {
     next(error);
   }
