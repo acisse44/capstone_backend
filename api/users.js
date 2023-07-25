@@ -104,27 +104,10 @@ router.delete("/:email", async (req, res, next) => {
   }
 });
 
-//get friends
+//get friends of user with id
 router.get("/friends/:id", async (request, response, next) => {
-  // try {
-  //   const allFriends = await Friendship.findAll({
-  //     include: [
-  //       {
-  //         model: User,
-  //         as: "userId1",
-  //       },
-  //       {
-  //         model: User,
-  //         as: "userId2",
-  //       },
-  //     ],
-  //   });
-  //   response.status(200).json(allFriends);
-  // } catch (error) {
-  //   next(error);
-  // }
   try {
-    const { id} = request.params;
+    const { id } = request.params;
     const usersFriends = await Friendship.findAll({
       where: { userId1: id},
     });
@@ -134,7 +117,7 @@ router.get("/friends/:id", async (request, response, next) => {
   }
 });
 
-//add friend
+//add friend 
 router.post("/addfriend", async (request, response, next) => {
   const { userId1, userId2 } = request.body;
   try {
@@ -151,7 +134,7 @@ router.post("/addfriend", async (request, response, next) => {
 });
 
 
-//accept friend request
+//accept friend request by pk, we need to accept friend based on user id 
 router.put("/updatefriend/:id", async (request, response, next) => {
   const { id } = request.params;
   const { accepted } = request.body;
