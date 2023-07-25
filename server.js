@@ -14,6 +14,16 @@ require("dotenv").config();
 
 const sessionStore = new SequelizeStore({ db });
 
+//connecting to the MongoDB
+const mongoose = require('mongoose');
+const connectToMongo = async () => {
+  await mongoose.connect(process.env.MONGO_URI);
+  console.log("Connected to MongoDB");
+};
+
+connectToMongo();
+
+
 // initialize, letting our frontend page access it
 const io = new Server(server, {
   cors: {
@@ -94,6 +104,9 @@ app.use(passport.session());
 app.use("/api", require("./api"));
 app.use("/auth", require("./auth"));
 app.use("/chat", require ("./chat"));
+app.use("/api/coversations", require("./api/conversations"));
+app.use("/api/mongoMessages", require("./api/mongoMessages"));
+
 
 const dbSetup = async () => {
   await db.sync();

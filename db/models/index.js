@@ -73,5 +73,5 @@ module.exports = {
   TestQuestion,
   QuizQuestion,
   Avatar,
-   Friendship,
+  Friendship,
 };
