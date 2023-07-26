@@ -110,7 +110,12 @@ router.get("/friends/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
     const usersFriends = await Friendship.findAll({
-      where: { userId1: id},
+      where: {[Op.or]: [
+        { userId1: id, accepted: true },
+        { userId2: id, accepted: true },
+      ],
+    },
+      // { userId1: id, userId2: id, accepted: true},
     });
     usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
   } catch (error) {
@@ -196,7 +201,7 @@ router.get("/friendrequests/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
     const usersFriends = await Friendship.findAll({
-      where: { userId2: id},
+      where: { userId2: id, accepted: false},
     });
     usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
   } catch (error) {
