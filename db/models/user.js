@@ -24,6 +24,10 @@ class User extends Model {
   async correctPassword(pwAttempt) {
     return (await User.encryptPassword(pwAttempt, this.salt)) === this.password;
   }
+
+  isAchievementUnlocked(achievementId) {
+    return this.achievements.includes(achievementId);
+  }
 }
 
 //Our users table with the following attributes for each
@@ -90,17 +94,17 @@ User.init(
       },
     },
     validate: {
-      googleLogIn(){
-        if(this.googleId){
-          console.log("user has google ID")
+      googleLogIn() {
+        if (this.googleId) {
+          console.log("user has google ID");
           return;
         } //google id - good
-        if(!this.password){
+        if (!this.password) {
           console.log("no password ERROR");
           throw new Error("account not created");
         } //not allowed
-      }
-    }
+      },
+    },
   }
 );
 

@@ -1,7 +1,7 @@
 // const router = require("express").Router();
 const express = require("express");
 const router = express.Router();
-const { User, Friendship } = require("../db/models");
+const { User, Friendship, Achievement } = require("../db/models");
 const bodyParser = require("body-parser");
 const { Op } = require("sequelize");
 
@@ -225,6 +225,32 @@ router.delete("/deletefriend/:id/:friendId", async (request, response, next) => 
   }
 });
 
+// GET unlocked achievements for a user
+router.get("/:userId/achievements", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const unlockedAchievements = await Achievement.findAll({
+      include: [
+        {
+          model: User,
+          through: { attributes: [] }, // Exclude join table attributes from the result
+          where: { id: userId },
+        },
+      ],
+    });
+
+    res.status(200).json(unlockedAchievements);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //get friend requests
 router.get("/friendrequests/:id", async (request, response, next) => {
   try {
@@ -237,8 +263,5 @@ router.get("/friendrequests/:id", async (request, response, next) => {
     next(error);
   }
 });
-
-
-
 
 module.exports = router;

@@ -41,14 +41,52 @@ const seedUsers = [
 
 const seedAchievements = [
   {
-    achievementName: "First Achievement",
+    achievementName: "Novice Adventurer",
     criteria: "Criteria for the first achievement",
-    imageURL: "https://example.com/image1.jpg",
+    pointsRequirement: 100,
+    imageURL:
+      "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
+    isUnlocked: false,
   },
   {
-    achievementName: "Second Achievement",
+    achievementName: "Journeyman Explorer",
     criteria: "Criteria for the second achievement",
-    imageURL: "https://example.com/image2.jpg",
+    pointsRequirement: 200,
+    imageURL:
+      "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
+    isUnlocked: false,
+  },
+  {
+    achievementName: "Master Trailblazer",
+    criteria: "Criteria for the third achievement",
+    pointsRequirement: 300,
+    imageURL:
+      "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
+    isUnlocked: false,
+  },
+  {
+    achievementName: "Champion of Challenges",
+    criteria: "Criteria for the fourthd achievement",
+    pointsRequirement: 400,
+    imageURL:
+      "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
+    isUnlocked: false,
+  },
+  {
+    achievementName: "Legendary Hero",
+    criteria: "Criteria for the fifth achievement",
+    pointsRequirement: 500,
+    imageURL:
+      "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
+    isUnlocked: false,
+  },
+  {
+    achievementName: "Mythical Legend",
+    criteria: "Criteria for the sixth achievement",
+    pointsRequirement: 600,
+    imageURL:
+      "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
+    isUnlocked: false,
   },
 ];
 
@@ -1410,9 +1448,9 @@ const seed = async () => {
   await Test.bulkCreate(seedTests);
   await TestQuestion.bulkCreate(seedTestQuestions);
 
-  const user = await User.findByPk(1); //manually populating the user achievement
-  const achievement = await Achievement.findByPk(1);
-  await user.addAchievement(achievement);
+  //const user = await User.findByPk(1); //manually populating the user achievement
+  //const achievement = await Achievement.findByPk(1);
+  //await user.addAchievement(achievement);
 };
 
 seed().then(() => process.exit());
