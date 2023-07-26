@@ -3,12 +3,13 @@ const express = require("express");
 const router = express.Router();
 const { User, Friendship } = require("../db/models");
 const bodyParser = require("body-parser");
+const { Op } = require("sequelize");
 
 
 //Get all users
 router.get("/allUsers", async (req, res, next) => {
   try {
-    const allUsers = await User.findAll({ attributes: ["id", "email"] });
+    const allUsers = await User.findAll({ attributes: ["id", "email", "username"] });
     res.status(200).json(allUsers);
   } catch (error) {
     next(error);
@@ -104,27 +105,10 @@ router.delete("/:email", async (req, res, next) => {
   }
 });
 
-//get friends
+//get friends of user with id
 router.get("/friends/:id", async (request, response, next) => {
-  // try {
-  //   const allFriends = await Friendship.findAll({
-  //     include: [
-  //       {
-  //         model: User,
-  //         as: "userId1",
-  //       },
-  //       {
-  //         model: User,
-  //         as: "userId2",
-  //       },
-  //     ],
-  //   });
-  //   response.status(200).json(allFriends);
-  // } catch (error) {
-  //   next(error);
-  // }
   try {
-    const { id} = request.params;
+    const { id } = request.params;
     const usersFriends = await Friendship.findAll({
       where: { userId1: id},
     });
@@ -134,31 +118,45 @@ router.get("/friends/:id", async (request, response, next) => {
   }
 });
 
-//add friend
-router.post("/addfriend", async (request, response, next) => {
-  const { userId1, userId2 } = request.body;
+//add friend 
+router.post("/addfriend/:userId1/:userId2", async (request, response, next) => {
+  const { userId1, userId2 } = request.params;
   try {
-    const friendship = await Friendship.create({
-      userId1,
-      userId2,
-      accepted: "false"
+    const searchExist = await Friendship.findOne({
+      where: { userId1: userId1, userId2: userId2}
     });
-
-    response.status(201).json(friendship);
+    if(searchExist===null){
+      console.log("condition hit");
+      const friendship = await Friendship.create({
+        userId1,
+        userId2,
+        accepted: "false"
+      });
+      response.status(201).json(friendship);
+    }
   } catch (error) {
     next(error);
   }
 });
 
 
-//accept friend request
-router.put("/updatefriend/:id", async (request, response, next) => {
-  const { id } = request.params;
-  const { accepted } = request.body;
+//accept friend request 
+router.put("/acceptrequest/:userId1/:userId2/:accepted", async (request, response, next) => {
+  const { userId1, userId2, accepted } = request.params;
+  console.log("new update friend " + userId1, userId2, accepted);
 
   try {
-    const friendToUpdate = await Friendship.findByPk(id);
+    const friendToUpdate = await Friendship.findOne({
+      where: {
+        [Op.or]: [
+          { userId1, userId2, accepted: false },
+          { userId1: userId2, userId2: userId1, accepted: false },
+        ],
+      },
+    });
+
     if (!friendToUpdate) {
+      console.log("Friend Not Found or Already Friends");
       return response.status(404).send("Friend Not Found");
     }
 
@@ -169,7 +167,8 @@ router.put("/updatefriend/:id", async (request, response, next) => {
   }
 });
 
-//delete a friend
+
+//delete a friend - delete request 
 router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
   const { id } = request.params; //getting the id from the parameter list
 
@@ -191,6 +190,20 @@ router.delete("/deletefriend/:id/:friendId", async (request, response, next) => 
     next(error);
   }
 });
+
+//get friend requests
+router.get("/friendrequests/:id", async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    const usersFriends = await Friendship.findAll({
+      where: { userId2: id},
+    });
+    usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 
 

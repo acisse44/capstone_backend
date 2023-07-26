@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Message = require(process.env.MONGO_MESSAGE);
+const Message = require(process.env.MONGO_MESSAGES);
 //add
 
 router.post("/", async (req, res) => {
