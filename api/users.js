@@ -200,8 +200,7 @@ router.delete("/declinefriend/:id/:friendId/:accepted", async (request, response
 
 //delete a friend - delete request 
 router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
-  const { id } = request.params; //getting the id from the parameter list
-  const { friendId} = request.params;
+  const { id, friendId } = request.params; //getting the id from the parameter list
    
   try {  //find the friend we want to delete by id
     const friendToDelete = await Friendship.findOne({
