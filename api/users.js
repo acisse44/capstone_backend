@@ -120,14 +120,11 @@ router.get("/friends/:id", async (request, response, next) => {
 
 //add friend 
 router.post("/addfriend/:userId1/:userId2", async (request, response, next) => {
-  //const { userId1, userId2 } = request.body;
   const { userId1, userId2 } = request.params;
-  // console.log( "user 1: "+ userId1 + "user 2: " +  userId2)
   try {
     const searchExist = await Friendship.findOne({
       where: { userId1: userId1, userId2: userId2}
     });
-// console.log("ENTRY EXISTS:  " + searchExist, userId1, userId2)
     if(searchExist===null){
       console.log("condition hit");
       const friendship = await Friendship.create({
@@ -144,7 +141,7 @@ router.post("/addfriend/:userId1/:userId2", async (request, response, next) => {
 
 
 //accept friend request 
-router.put("/updatefriend/:userId1/:userId2/:accepted", async (request, response, next) => {
+router.put("/acceptrequest/:userId1/:userId2/:accepted", async (request, response, next) => {
   const { userId1, userId2, accepted } = request.params;
   console.log("new update friend " + userId1, userId2, accepted);
 
@@ -171,7 +168,7 @@ router.put("/updatefriend/:userId1/:userId2/:accepted", async (request, response
 });
 
 
-//delete a friend
+//delete a friend - delete request 
 router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
   const { id } = request.params; //getting the id from the parameter list
 
