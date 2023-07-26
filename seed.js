@@ -884,108 +884,126 @@ const seedTests = [
     languageId: 1, // English language ID
     testName: "English Test I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     // testID: 1,
     languageId: 1, // English language ID
     testName: "English Test II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     // testID: 1,
     languageId: 1, // English language ID
     testName: "English Test III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     // testID: 2,
     languageId: 2, // Spanish language ID
     testName: "Spanish Test I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     // testID: 2,
     languageId: 2, // Spanish language ID
     testName: "Spanish Test II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     // testID: 2,
     languageId: 2, // Spanish language ID
     testName: "Spanish Test III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     // testID: 3,
     languageId: 3, // Arabic language ID
     testName: "Arabic Test I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     // testID: 3,
     languageId: 3, // Arabic language ID
     testName: "Arabic Test II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     // testID: 3,
     languageId: 3, // Arabic language ID
     testName: "Arabic Test III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     // testID: 4,
     languageId: 4, // Mandarin language ID
     testName: "Mandarin Test I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     // testID: 4,
     languageId: 4, // Mandarin language ID
     testName: "Mandarin Test II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     // testID: 4,
     languageId: 4, // Mandarin language ID
     testName: "Mandarin Test III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     // testID: 5,
     languageId: 5, // French language ID
     testName: "French Test I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     // testID: 5,
     languageId: 5, // French language ID
     testName: "French Test II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     // testID: 5,
     languageId: 5, // French language ID
     testName: "French Test III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     // testID: 6,
     languageId: 6, // Soninke language ID
     testName: "Soninke Test I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     // testID: 6,
     languageId: 6, // Soninke language ID
     testName: "Soninke Test II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     // testID: 6,
     languageId: 6, // Soninke language ID
     testName: "Soninke Test III",
     difficulty: "Advanced",
+    completed: false,
   },
 ];
 
