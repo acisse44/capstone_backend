@@ -229,23 +229,26 @@ router.delete("/deletefriend/:id/:friendId", async (request, response, next) => 
 router.get("/:userId/achievements", async (req, res, next) => {
   try {
     const userId = req.params.userId;
-    const user = await User.findByPk(userId);
+      console.log("UserID", userId);
+    const user = await User.findOne({where: {id : userId}, include: Achievement
+          //through: { attributes: [] }, // Exclude join table attributes from the result
+      });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const unlockedAchievements = await Achievement.findAll({
-      include: [
-        {
-          model: User,
-          through: { attributes: [] }, // Exclude join table attributes from the result
-          where: { id: userId },
-        },
-      ],
-    });
+    // const unlockedAchievements = await Achievement.findAll({
+    //   include: [
+    //     {
+    //       model: User,
+    //       //through: { attributes: [] }, // Exclude join table attributes from the result
+    //       where: { id: userId },
+    //     },
+    //   ],
+    // });
 
-    res.status(200).json(unlockedAchievements);
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }

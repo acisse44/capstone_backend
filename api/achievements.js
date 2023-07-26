@@ -36,24 +36,26 @@ router.post("/", async (req, res, next) => {
 router.post("/:userId/unlock/:achievementId", async (req, res, next) => {
   try {
     const { userId, achievementId } = req.params;
-    const user = await User.findByPk(userId);
+    console.log("UserID and AchievementID", userId, achievementId);
+    const user = await User.findByPk(userId,{include: Achievement});
     const achievement = await Achievement.findByPk(achievementId);
+    user.addAchievements(achievement);
 
-    if (!user || !achievement) {
-      return res.status(404).send("User or Achievement not found");
-    }
+    // if (!user || !achievement) {
+    //   return res.status(404).send("User or Achievement not found");
+    // }
 
     // Check if the user already unlocked the achievement
-    const userAchievement = await UserAchievement.findOne({
-      where: {
-        userId,
-        achievementId,
-      },
-    });
+    // const userAchievement = await UserAchievement.findOne({
+    //   where: {
+    //     userId,
+    //     achievementId,
+    //   },
+    // });
 
-    if (userAchievement) {
-      return res.status(400).send("Achievement already unlocked");
-    }
+    // if (userAchievement) {
+    //   return res.status(400).send("Achievement already unlocked");
+    // }
 
     if (user.points < achievement.pointsRequirement) {
       return res
@@ -62,10 +64,10 @@ router.post("/:userId/unlock/:achievementId", async (req, res, next) => {
     }
 
     // Create a new row in the UserAchievement table to represent the unlocked achievement
-    await UserAchievement.create({
-      userId,
-      achievementId,
-    });
+    // await UserAchievement.create({
+    //   userId,
+    //   achievementId,
+    // });
 
     await achievement.update({ isUnlocked: true });
 
