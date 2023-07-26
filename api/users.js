@@ -172,17 +172,47 @@ router.put("/acceptrequest/:userId1/:userId2/:accepted", async (request, respons
   }
 });
 
+router.delete("/declinefriend/:id/:friendId/:accepted", async (request, response, next) => {
+  const { id, friendId, accepted } = request.params;
+   
+  try {  //find the friend we want to delete by id
+    const friendToDelete = await Friendship.findOne({
+      where: {
+        [Op.or]: [
+          { userId1: id,  userId2: friendId, accepted: false},
+          { userId1: friendId, userId2: id, accepted: false},
+        ],
+      },
+      
+    });
+
+    if (!friendToDelete) {
+      return response.status(404).send("Friend Not Found");
+    }
+    //then we delete
+    await friendToDelete.destroy();
+    response.status(200).send("Declined request Successfully");
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 //delete a friend - delete request 
 router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
   const { id } = request.params; //getting the id from the parameter list
-
   const { friendId} = request.params;
    
   try {  //find the friend we want to delete by id
     const friendToDelete = await Friendship.findOne({
-      where: { userId1: id} ,
-      where: {userId2: friendId}, 
+      // where: { userId1: id, userId2: friendId } ,
+      where: {
+        [Op.or]: [
+          { userId1: id,  userId2: friendId },
+          { userId1: friendId, userId2: id},
+        ],
+      },
+      
     });
 
     if (!friendToDelete) {
