@@ -110,7 +110,12 @@ router.get("/friends/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
     const usersFriends = await Friendship.findAll({
-      where: { userId1: id},
+      where: {[Op.or]: [
+        { userId1: id, accepted: true },
+        { userId2: id, accepted: true },
+      ],
+    },
+      // { userId1: id, userId2: id, accepted: true},
     });
     usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
   } catch (error) {
@@ -167,17 +172,46 @@ router.put("/acceptrequest/:userId1/:userId2/:accepted", async (request, respons
   }
 });
 
-
-//delete a friend - delete request 
-router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
-  const { id } = request.params; //getting the id from the parameter list
-
-  const { friendId} = request.params;
+router.delete("/declinefriend/:id/:friendId/:accepted", async (request, response, next) => {
+  const { id, friendId, accepted } = request.params;
    
   try {  //find the friend we want to delete by id
     const friendToDelete = await Friendship.findOne({
-      where: { userId1: id} ,
-      where: {userId2: friendId}, 
+      where: {
+        [Op.or]: [
+          { userId1: id,  userId2: friendId, accepted: false},
+          { userId1: friendId, userId2: id, accepted: false},
+        ],
+      },
+      
+    });
+
+    if (!friendToDelete) {
+      return response.status(404).send("Friend Not Found");
+    }
+    //then we delete
+    await friendToDelete.destroy();
+    response.status(200).send("Declined request Successfully");
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+//delete a friend - delete request 
+router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
+  const { id, friendId } = request.params; //getting the id from the parameter list
+   
+  try {  //find the friend we want to delete by id
+    const friendToDelete = await Friendship.findOne({
+      // where: { userId1: id, userId2: friendId } ,
+      where: {
+        [Op.or]: [
+          { userId1: id,  userId2: friendId },
+          { userId1: friendId, userId2: id},
+        ],
+      },
+      
     });
 
     if (!friendToDelete) {
@@ -196,7 +230,7 @@ router.get("/friendrequests/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
     const usersFriends = await Friendship.findAll({
-      where: { userId2: id},
+      where: { userId2: id, accepted: false},
     });
     usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
   } catch (error) {
