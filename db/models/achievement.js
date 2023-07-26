@@ -13,11 +13,18 @@ const Achievement = db.define("achievement", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  pointsRequirement: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   imageURL: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-
+  isUnlocked:{
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  }
 });
 
 module.exports = Achievement;

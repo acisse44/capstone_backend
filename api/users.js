@@ -1,14 +1,15 @@
 // const router = require("express").Router();
 const express = require("express");
 const router = express.Router();
-const { User, Friendship } = require("../db/models");
+const { User, Friendship, Achievement } = require("../db/models");
 const bodyParser = require("body-parser");
+const { Op } = require("sequelize");
 
 
 //Get all users
 router.get("/allUsers", async (req, res, next) => {
   try {
-    const allUsers = await User.findAll({ attributes: ["id", "email"] });
+    const allUsers = await User.findAll({ attributes: ["id", "email", "username", "points", "avatarId"] });
     res.status(200).json(allUsers);
   } catch (error) {
     next(error);
@@ -120,29 +121,17 @@ router.delete("/:email", async (req, res, next) => {
   }
 });
 
-//get friends
+//get friends of user with id
 router.get("/friends/:id", async (request, response, next) => {
-  // try {
-  //   const allFriends = await Friendship.findAll({
-  //     include: [
-  //       {
-  //         model: User,
-  //         as: "userId1",
-  //       },
-  //       {
-  //         model: User,
-  //         as: "userId2",
-  //       },
-  //     ],
-  //   });
-  //   response.status(200).json(allFriends);
-  // } catch (error) {
-  //   next(error);
-  // }
   try {
-    const { id} = request.params;
+    const { id } = request.params;
     const usersFriends = await Friendship.findAll({
-      where: { userId1: id},
+      where: {[Op.or]: [
+        { userId1: id, accepted: true },
+        { userId2: id, accepted: true },
+      ],
+    },
+      // { userId1: id, userId2: id, accepted: true},
     });
     usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
   } catch (error) {
@@ -150,31 +139,45 @@ router.get("/friends/:id", async (request, response, next) => {
   }
 });
 
-//add friend
-router.post("/addfriend", async (request, response, next) => {
-  const { userId1, userId2 } = request.body;
+//add friend 
+router.post("/addfriend/:userId1/:userId2", async (request, response, next) => {
+  const { userId1, userId2 } = request.params;
   try {
-    const friendship = await Friendship.create({
-      userId1,
-      userId2,
-      accepted: "false"
+    const searchExist = await Friendship.findOne({
+      where: { userId1: userId1, userId2: userId2}
     });
-
-    response.status(201).json(friendship);
+    if(searchExist===null){
+      console.log("condition hit");
+      const friendship = await Friendship.create({
+        userId1,
+        userId2,
+        accepted: "false"
+      });
+      response.status(201).json(friendship);
+    }
   } catch (error) {
     next(error);
   }
 });
 
 
-//accept friend request
-router.put("/updatefriend/:id", async (request, response, next) => {
-  const { id } = request.params;
-  const { accepted } = request.body;
+//accept friend request 
+router.put("/acceptrequest/:userId1/:userId2/:accepted", async (request, response, next) => {
+  const { userId1, userId2, accepted } = request.params;
+  console.log("new update friend " + userId1, userId2, accepted);
 
   try {
-    const friendToUpdate = await Friendship.findByPk(id);
+    const friendToUpdate = await Friendship.findOne({
+      where: {
+        [Op.or]: [
+          { userId1, userId2, accepted: false },
+          { userId1: userId2, userId2: userId1, accepted: false },
+        ],
+      },
+    });
+
     if (!friendToUpdate) {
+      console.log("Friend Not Found or Already Friends");
       return response.status(404).send("Friend Not Found");
     }
 
@@ -185,16 +188,46 @@ router.put("/updatefriend/:id", async (request, response, next) => {
   }
 });
 
-//delete a friend
-router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
-  const { id } = request.params; //getting the id from the parameter list
-
-  const { friendId} = request.params;
+router.delete("/declinefriend/:id/:friendId/:accepted", async (request, response, next) => {
+  const { id, friendId, accepted } = request.params;
    
   try {  //find the friend we want to delete by id
     const friendToDelete = await Friendship.findOne({
-      where: { userId1: id} ,
-      where: {userId2: friendId}, 
+      where: {
+        [Op.or]: [
+          { userId1: id,  userId2: friendId, accepted: false},
+          { userId1: friendId, userId2: id, accepted: false},
+        ],
+      },
+      
+    });
+
+    if (!friendToDelete) {
+      return response.status(404).send("Friend Not Found");
+    }
+    //then we delete
+    await friendToDelete.destroy();
+    response.status(200).send("Declined request Successfully");
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+//delete a friend - delete request 
+router.delete("/deletefriend/:id/:friendId", async (request, response, next) => {
+  const { id, friendId } = request.params; //getting the id from the parameter list
+   
+  try {  //find the friend we want to delete by id
+    const friendToDelete = await Friendship.findOne({
+      // where: { userId1: id, userId2: friendId } ,
+      where: {
+        [Op.or]: [
+          { userId1: id,  userId2: friendId },
+          { userId1: friendId, userId2: id},
+        ],
+      },
+      
     });
 
     if (!friendToDelete) {
@@ -208,6 +241,46 @@ router.delete("/deletefriend/:id/:friendId", async (request, response, next) => 
   }
 });
 
+// GET unlocked achievements for a user
+router.get("/:userId/achievements", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+      console.log("UserID", userId);
+    const user = await User.findOne({where: {id : userId}, include: Achievement
+          //through: { attributes: [] }, // Exclude join table attributes from the result
+      });
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // const unlockedAchievements = await Achievement.findAll({
+    //   include: [
+    //     {
+    //       model: User,
+    //       //through: { attributes: [] }, // Exclude join table attributes from the result
+    //       where: { id: userId },
+    //     },
+    //   ],
+    // });
+
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//get friend requests
+router.get("/friendrequests/:id", async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    const usersFriends = await Friendship.findAll({
+      where: { userId2: id, accepted: false},
+    });
+    usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

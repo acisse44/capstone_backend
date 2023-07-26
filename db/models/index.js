@@ -9,11 +9,14 @@ const Role = require("./role.js");
 const TestQuestion = require("./testQuestion.js");
 const QuizQuestion = require("./quizQuestion.js");
 const Avatar = require("./avatar.js");
+//const UserAchievement = require("./UserAchievement.js");
 
 // Our Associations: many-to-many
-Achievement.belongsToMany(User, { through: "UserAchievement" }); //M:M
+Achievement.belongsToMany(User, { through: "userAchievement" }); //M:M
+User.belongsToMany(Achievement, { through: "userAchievement" });
 // through table cannot be the same as our associated tables
-User.belongsToMany(Achievement, { through: "UserAchievement" });
+//User.hasMany(Achievement, { foreignKey: "UserId" }); // Correct the foreign key name here
+//Achievement.belongsTo(User);
 
 User.belongsToMany(Language, { through: "UserLanguage" });
 Language.belongsToMany(User, { through: "UserLanguage" });
@@ -74,4 +77,5 @@ module.exports = {
   QuizQuestion,
   Avatar,
   Friendship,
+  //UserAchievement,
 };
