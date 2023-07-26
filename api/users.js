@@ -9,7 +9,7 @@ const { Op } = require("sequelize");
 //Get all users
 router.get("/allUsers", async (req, res, next) => {
   try {
-    const allUsers = await User.findAll({ attributes: ["id", "email", "username"] });
+    const allUsers = await User.findAll({ attributes: ["id", "email", "username", "points", "avatarId"] });
     res.status(200).json(allUsers);
   } catch (error) {
     next(error);
