@@ -248,108 +248,126 @@ const seedQuizzes = [
     languageId: 1, // English language ID
     quizName: "English Quiz I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     //   quizID: 1,
     languageId: 1, // English language ID
     quizName: "English Quiz II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     //   quizID: 1,
     languageId: 1, // English language ID
     quizName: "English Quiz III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     //   quizID: 2,
     languageId: 2, // Spanish language ID
     quizName: "Spanish Quiz I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     //   quizID: 2,
     languageId: 2, // Spanish language ID
     quizName: "Spanish Quiz II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     //   quizID: 2,
     languageId: 2, // Spanish language ID
     quizName: "Spanish Quiz III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     //   quizID: 3,
     languageId: 3, // Arabic language ID
     quizName: "Arabic Quiz I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     //   quizID: 3,
     languageId: 3, // Arabic language ID
     quizName: "Arabic Quiz II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     //   quizID: 3,
     languageId: 3, // Arabic language ID
     quizName: "Arabic Quiz III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     //   quizID: 4,
     languageId: 4, // Mandarin language ID
     quizName: "Mandarin Quiz I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     //   quizID: 4,
     languageId: 4, // Mandarin language ID
     quizName: "Mandarin Quiz II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     //   quizID: 4,
     languageId: 4, // Mandarin language ID
     quizName: "Mandarin Quiz III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     //   quizID: 5,
     languageId: 5, // French language ID
     quizName: "French Quiz I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     //   quizID: 5,
     languageId: 5, // French language ID
     quizName: "French Quiz II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     //   quizID: 5,
     languageId: 5, // French language ID
     quizName: "French Quiz III",
     difficulty: "Advanced",
+    completed: false,
   },
   {
     //   quizID: 6,
     languageId: 6, // Soninke language ID
     quizName: "Soninke Quiz I",
     difficulty: "Beginner",
+    completed: false,
   },
   {
     //   quizID: 6,
     languageId: 6, // Soninke language ID
     quizName: "Soninke Quiz II",
     difficulty: "Intermediate",
+    completed: false,
   },
   {
     //   quizID: 6,
     languageId: 6, // Soninke language ID
     quizName: "Soninke Quiz III",
     difficulty: "Advanced",
+    completed: false,
   },
 ];
 

@@ -58,4 +58,21 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+router.put("/markCompleted/:id", async (req, res, next) => {
+  try {
+    const { lessonId } = req.params;
+    const lesson = await Lesson.findByPk(lessonId);
+
+    if (!lesson) {
+      return res.status(404).send("Lesson not found");
+    }
+    lesson.completed = true;
+    await lesson.save();
+
+    res.status(200).json(lesson);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

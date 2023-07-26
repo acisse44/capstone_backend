@@ -95,7 +95,7 @@ router.put("/updatePoints/:id", async (req, res, next) => {
     if (!user) {
       return res.status(404).send("User not found");
     }
-    user.points = points;
+    user.points += points;
     await user.save();
     res.status(200).json(user);
   } catch (error) {
