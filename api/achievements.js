@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Achievement } = require("../db/models");
+const { Achievement, User, UserAchievement } = require("../db/models");
 
 router.get("/", async (request, response, next) => {
     try {
@@ -32,5 +32,48 @@ router.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/:userId/unlock/:achievementId", async (req, res, next) => {
+  try {
+    const { userId, achievementId } = req.params;
+    const user = await User.findByPk(userId);
+    const achievement = await Achievement.findByPk(achievementId);
+
+    if (!user || !achievement) {
+      return res.status(404).send("User or Achievement not found");
+    }
+
+    // Check if the user already unlocked the achievement
+    const userAchievement = await UserAchievement.findOne({
+      where: {
+        userId,
+        achievementId,
+      },
+    });
+
+    if (userAchievement) {
+      return res.status(400).send("Achievement already unlocked");
+    }
+
+    if (user.points < achievement.pointsRequirement) {
+      return res
+        .status(400)
+        .send("Not enough points to unlock the achievement");
+    }
+
+    // Create a new row in the UserAchievement table to represent the unlocked achievement
+    await UserAchievement.create({
+      userId,
+      achievementId,
+    });
+
+    await achievement.update({ isUnlocked: true });
+
+    res.status(200).json({ message: "Achievement unlocked successfully" });
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;
