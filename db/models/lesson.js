@@ -18,12 +18,12 @@ const Lesson = db.define("lesson", {
   languageId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  }, 
-  completed:{
+  },
+  completed: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-  }
-
+    defaultValue: false,
+  },
 });
 
 module.exports = Lesson;
