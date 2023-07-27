@@ -42,7 +42,7 @@ const seedUsers = [
 const seedAchievements = [
   {
     achievementName: "Novice Adventurer",
-    criteria: "Criteria for the first achievement",
+    criteria: "The first achievement",
     pointsRequirement: 100,
     imageURL:
       "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
@@ -50,7 +50,7 @@ const seedAchievements = [
   },
   {
     achievementName: "Journeyman Explorer",
-    criteria: "Criteria for the second achievement",
+    criteria: "The second achievement",
     pointsRequirement: 200,
     imageURL:
       "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
@@ -58,7 +58,7 @@ const seedAchievements = [
   },
   {
     achievementName: "Master Trailblazer",
-    criteria: "Criteria for the third achievement",
+    criteria: "The third achievement",
     pointsRequirement: 300,
     imageURL:
       "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
@@ -66,7 +66,7 @@ const seedAchievements = [
   },
   {
     achievementName: "Champion of Challenges",
-    criteria: "Criteria for the fourthd achievement",
+    criteria: "The fourth achievement",
     pointsRequirement: 400,
     imageURL:
       "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
@@ -74,7 +74,7 @@ const seedAchievements = [
   },
   {
     achievementName: "Legendary Hero",
-    criteria: "Criteria for the fifth achievement",
+    criteria: "The fifth achievement",
     pointsRequirement: 500,
     imageURL:
       "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
@@ -82,7 +82,7 @@ const seedAchievements = [
   },
   {
     achievementName: "Mythical Legend",
-    criteria: "Criteria for the sixth achievement",
+    criteria: "The sixth achievement",
     pointsRequirement: 600,
     imageURL:
       "https://camdenhc.com/wp-content/uploads/sites/69/2018/05/achievement.jpg",
