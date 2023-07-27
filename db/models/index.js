@@ -55,15 +55,14 @@ Quiz.belongsTo(Language);
 Language.hasMany(Test, { foreignKey: "languageId" });
 Test.belongsTo(Language);
 
-Friendship.belongsTo(User, {
-  foreignKey: 'userId1',
-  unique: false
-});
 
-Friendship.belongsTo(User, {
-  foreignKey: 'userId2',
-  unique: false
-});
+User.belongsToMany(User, {through: Friendship, foreignKey: 'userId1', as: 'Friends'})
+User.belongsToMany(User, {through: Friendship, foreignKey: 'userId2', as: 'Users'})
+User.hasMany(Friendship, {foreignKey: 'userId1', as: 'friendId1'} )
+User.hasMany(Friendship, {foreignKey: 'userId2', as: 'friendId2'})
+Friendship.belongsTo(User, {foreignKey: 'userId1', as: 'Friend'})
+Friendship.hasMany(User,  {foreignKey: 'userId2', as: 'User'})
+
 
 module.exports = {
   User,
