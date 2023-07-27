@@ -15,11 +15,11 @@ const Test = db.define("test", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  completed:{
+  completed: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-  }
-  
+    defaultValue: false,
+  },
 });
 
 module.exports = Test;
