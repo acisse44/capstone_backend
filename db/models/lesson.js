@@ -18,7 +18,11 @@ const Lesson = db.define("lesson", {
   languageId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  },
+  }, 
+  completed:{
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  }
 
 });
 

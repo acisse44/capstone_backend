@@ -15,6 +15,10 @@ const Test = db.define("test", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  completed:{
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  }
   
 });
 

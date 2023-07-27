@@ -15,7 +15,10 @@ const Quiz = db.define("quiz", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  
+  completed:{
+    type: DataTypes.BOOLEAN,
+    allowNull: false, 
+  }
 });
 
 module.exports = Quiz;
