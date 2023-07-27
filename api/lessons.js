@@ -60,8 +60,8 @@ router.delete("/:id", async (req, res, next) => {
 
 router.put("/markCompleted/:id", async (req, res, next) => {
   try {
-    const { lessonId } = req.params;
-    const lesson = await Lesson.findByPk(lessonId);
+    const { id } = req.params;
+    const lesson = await Lesson.findByPk(id);
 
     if (!lesson) {
       return res.status(404).send("Lesson not found");
