@@ -52,8 +52,8 @@ router.get(
 router.get(
   "/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/login",
-    successRedirect: "http://localhost:3000/home",
+    failureRedirect: `${process.env.FRONTEND_URL}/login`,
+    successRedirect: `${process.env.FRONTEND_URL}/home`,
   }),
   
 );
