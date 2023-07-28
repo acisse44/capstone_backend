@@ -125,21 +125,22 @@ router.delete("/:email", async (req, res, next) => {
 router.get("/friends/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
+    console.log("get friends id" + id)
     const usersFriends = await User.findByPk(
       id, 
-      {attributes: ['id'],
+      {
+        attributes: ['id'],
       include: [{
-        model: User, attributes: ['id', 'username'],
+        model: User,
+         attributes: ['id', 'username'],
         as: 'Users'
-      },
-        {
-          model: User, attributes: ['id', 'username'],
-          as: 'Friends'
-        }
-      ]})
+      }, {model: User,
+        attributes: ['id', 'username'],
+          as: 'Friends'}],
+      })
 
-      
-    const both = {...usersFriends.Users, ...usersFriends.Friends }
+    
+    const both = [...usersFriends.Users, ...usersFriends.Friends ]
 
     both ? response.status(200).json(both) : response.status(404).send("User Not Found");
   } catch (error) {
@@ -282,10 +283,13 @@ router.get("/:userId/achievements", async (req, res, next) => {
 router.get("/friendrequests/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
-    const usersFriends = await Friendship.findAll({
-      where: { userId2: id, accepted: false},
-    });
-    usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
+
+    const currentUser = await User.findByPk(id);
+    const usersFriends = await currentUser.getUsers({joinTableAttributes: {accepted: false}})
+    const requests = usersFriends.filter((object) => object.Friendship.accepted===false)
+    // console.log("friend requests " + usersFriends)
+
+    usersFriends ? response.status(200).json(requests) : response.status(404).send("User Not Found");
   } catch (error) {
     next(error);
   }
