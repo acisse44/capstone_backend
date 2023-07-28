@@ -27,9 +27,11 @@ connectToMongo();
 // initialize, letting our frontend page access it
 const io = new Server(server, {
   cors: {
-    origin: `http://localhost:3000`,
-    methods: ["GET", "POST"],
-  },
+    origin: process.env.FRONTEND_URL  || `http://localhost:3000`,
+    credentials: true,
+    allowedHeaders:
+      "Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+    preflightContinue: true,  },
 });
 
 // socket io setup
@@ -63,10 +65,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: process.env.FRONTEND_URL  || `http://localhost:3000`,
     credentials: true,
-  })
+    allowedHeaders:
+      "Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+    preflightContinue: true,  },
+  )
 
 );
 
@@ -77,9 +81,18 @@ app.use(
     store: sessionStore,
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      maxAge: 8 * 60 * 60 * 1000, // 8 hours
-    },
+    cookie: process.env.NODE_ENV == "dev" ? { 
+      maxAge: 7 * 24 * 60 * 60 * 1000, // The maximum age (in milliseconds) of a valid session.
+      secure: false,
+      httpOnly: false,
+      sameSite: false,
+    }
+  : {
+      maxAge: 7 * 24 * 60 * 60 * 1000, // The maximum age (in milliseconds) of a valid session.
+      secure: true, // Required to enable cookies to go through https for better security
+      httpOnly: true, // Not allowing client-side javascript to interact with cookie, thus increasing security
+      sameSite: "none", // Required to enable cors for cookies
+    }
   }
   )
 )
