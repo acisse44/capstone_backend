@@ -53,11 +53,9 @@ router.get(
   "/callback",
   passport.authenticate("google", {
     failureRedirect: "http://localhost:3000/login",
+    successRedirect: "http://localhost:3000/home",
   }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000/home");
-  }
+  
 );
 
 module.exports = router;
