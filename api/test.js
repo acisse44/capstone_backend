@@ -59,4 +59,20 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+router.put("/markCompleted/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const test = await Test.findByPk(id);
+
+    if (!test) {
+      return res.status(404).send("Test not found");
+    }
+    test.completed = true;
+    await test.save();
+    res.status(200).json(test);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

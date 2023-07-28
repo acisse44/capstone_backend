@@ -125,15 +125,23 @@ router.delete("/:email", async (req, res, next) => {
 router.get("/friends/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
-    const usersFriends = await Friendship.findAll({
-      where: {[Op.or]: [
-        { userId1: id, accepted: true },
-        { userId2: id, accepted: true },
-      ],
-    },
-      // { userId1: id, userId2: id, accepted: true},
-    });
-    usersFriends ? response.status(200).json(usersFriends) : response.status(404).send("User Not Found");
+    const usersFriends = await User.findByPk(
+      id, 
+      {attributes: ['id'],
+      include: [{
+        model: User, attributes: ['id', 'username'],
+        as: 'Users'
+      },
+        {
+          model: User, attributes: ['id', 'username'],
+          as: 'Friends'
+        }
+      ]})
+
+      
+    const both = {...usersFriends.Users, ...usersFriends.Friends }
+
+    both ? response.status(200).json(both) : response.status(404).send("User Not Found");
   } catch (error) {
     next(error);
   }
@@ -147,7 +155,7 @@ router.post("/addfriend/:userId1/:userId2", async (request, response, next) => {
       where: { userId1: userId1, userId2: userId2}
     });
     if(searchExist===null){
-      console.log("condition hit");
+      console.log("add friend condition hit");
       const friendship = await Friendship.create({
         userId1,
         userId2,
