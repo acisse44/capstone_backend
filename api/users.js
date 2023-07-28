@@ -125,21 +125,22 @@ router.delete("/:email", async (req, res, next) => {
 router.get("/friends/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
+    console.log("get friends id" + id)
     const usersFriends = await User.findByPk(
       id, 
-      {attributes: ['id'],
+      {
+        attributes: ['id'],
       include: [{
-        model: User, attributes: ['id', 'username'],
+        model: User,
+         attributes: ['id', 'username'],
         as: 'Users'
-      },
-        {
-          model: User, attributes: ['id', 'username'],
-          as: 'Friends'
-        }
-      ]})
+      }, {model: User,
+        attributes: ['id', 'username'],
+          as: 'Friends'}],
+      })
 
-      
-    const both = {...usersFriends.Users, ...usersFriends.Friends }
+    
+    const both = [...usersFriends.Users, ...usersFriends.Friends ]
 
     both ? response.status(200).json(both) : response.status(404).send("User Not Found");
   } catch (error) {
