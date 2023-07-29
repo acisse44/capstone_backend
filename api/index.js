@@ -14,8 +14,6 @@ router.use("/quizQuestion", require("./quizQuestion"));
 router.use("/test", require("./test"));
 router.use("/testQuestion", require("./testQuestion"));
 router.use("/avatars", require("./avatars"));
-router.use("/conversations", require("./conversations"));
-router.use("/mongoMessages", require("./mongoMessages"));
 
 
 

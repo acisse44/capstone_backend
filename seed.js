@@ -1490,7 +1490,9 @@ const seedImages = [
   }
 ];
 
+ 
 const seed = async () => {
+  await db.sync({force:true});
   await Achievement.bulkCreate(seedAchievements);
   await User.bulkCreate(seedUsers);
   await Language.bulkCreate(seedLanguages);
