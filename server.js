@@ -6,36 +6,37 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const passport = require("passport");
 const cors = require("cors");
 const db = require("./db");
-const http = require('http');
-const server = http.createServer(app); //wraps app in server, so we need server.listen to use it
-const { Server } = require("socket.io");
+// const http = require('http');
+// const server = http.createServer(app); //wraps app in server, so we need server.listen to use it
+// const { Server } = require("socket.io");
+
 const { User } = require("./db/models");
 // const io = new Server(server);
 
 const sessionStore = new SequelizeStore({ db });
 
 //connecting to the MongoDB
-const mongoose = require('mongoose');
-const connectToMongo = async () => {
-  await mongoose.connect(process.env.MONGO_URI);
-  console.log("Connected to MongoDB");
-};
+// const mongoose = require('mongoose');
+// const connectToMongo = async () => {
+//   await mongoose.connect(process.env.MONGO_URI);
+//   console.log("Connected to MongoDB");
+// };
 
-connectToMongo();
+// connectToMongo();
 
 
 // initialize, letting our frontend page access it
-const io = new Server(server, {
-  cors: {
-    origin: process.env.FRONTEND_URL  || `http://localhost:3000`,
-    credentials: true,
-    allowedHeaders:
-      "Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-    preflightContinue: true,  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: process.env.FRONTEND_URL  || `http://localhost:3000`,
+//     credentials: true,
+//     allowedHeaders:
+//       "Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+//     preflightContinue: true,  },
+// });
 
 // socket io setup
-io.on('connection', (socket) => {
+// io.on('connection', (socket) => {
   // socket.on('chat message', (msg) => {
   //   io.emit('chat message', msg);
   //   console.log(msg);
@@ -49,17 +50,17 @@ io.on('connection', (socket) => {
   //   console.log(`user joined room + ${data}`)
   // })
 
-  console.log("user connected");
+  // console.log("user connected");
 
-  //sends the message to all the users on the server
-  socket.on('message', (data) => {
-    socket.emit('messageResponse', data);
-  });
+  // //sends the message to all the users on the server
+  // socket.on('message', (data) => {
+  //   socket.emit('messageResponse', data);
+  // });
 
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  })
-});
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   })
+// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -126,7 +127,7 @@ const dbSetup = async () => {
   sessionStore.sync();
 };
 dbSetup();
-server.listen(8080, () => console.log(`Server is running on port: 8080`));
+app.listen(8080, () => console.log(`Server is running on port: 8080`));
 
 
 
