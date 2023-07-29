@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const session = require("express-session");
@@ -10,7 +11,6 @@ const server = http.createServer(app); //wraps app in server, so we need server.
 const { Server } = require("socket.io");
 const { User } = require("./db/models");
 // const io = new Server(server);
-require("dotenv").config();
 
 const sessionStore = new SequelizeStore({ db });
 
@@ -128,3 +128,4 @@ const dbSetup = async () => {
 dbSetup();
 server.listen(8080, () => console.log(`Server is running on port: 8080`));
 
+module.exports = app;
