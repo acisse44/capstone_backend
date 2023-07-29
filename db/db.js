@@ -1,12 +1,12 @@
-const { Sequelize } = require("sequelize");
 require("dotenv").config();
+
+const { Sequelize } = require("sequelize");
 const pg = require("pg");
 const { name } = require("../package.json");
 
-console.log("EnvUsername", process.env.USERNAME);
 //creation of singleton database
 const db =  process.env.NODE_ENV == "dev"
-? new Sequelize(name, process.env.USERNAME, process.env.PASSWORD, 
+? new Sequelize(name, process.env.POSTGRES_USERNAME, process.env.POSTGRES_PASSWORD, 
 {
   host : 'localhost',
   logging: false,
