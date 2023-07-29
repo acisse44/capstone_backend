@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
-
+const pg = require("pg");
 const { name } = require("../package.json");
 
 console.log("EnvUsername", process.env.USERNAME);
