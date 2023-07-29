@@ -118,8 +118,8 @@ app.use(passport.session());
 app.use("/api", require("./api"));
 app.use("/auth", require("./auth"));
 app.use("/chat", require ("./chat"));
-app.use("/api/coversations", require("./api/conversations"));
-app.use("/api/mongoMessages", require("./api/mongoMessages"));
+// app.use("/api/coversations", require("./api/conversations"));
+// app.use("/api/mongoMessages", require("./api/mongoMessages"));
 
 
 const dbSetup = async () => {
