@@ -8,7 +8,7 @@ const app = express();
 const cors = require("cors");
 const db = require("./db");
 
-const { User } = require("./db/models");
+// const { User } = require("./db/models");
 
 // const sessionStore = new SequelizeStore({ db });
 
