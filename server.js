@@ -6,9 +6,9 @@ const app = express();
 // const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // const passport = require("passport");
 const cors = require("cors");
-// const db = require("./db");
+const db = require("./db");
 
-// const { User } = require("./db/models");
+const { User } = require("./db/models");
 
 // const sessionStore = new SequelizeStore({ db });
 
