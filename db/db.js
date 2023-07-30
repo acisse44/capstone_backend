@@ -1,9 +1,10 @@
 require("dotenv").config();
 
-const { Sequelize } = require("sequelize");
+const Sequelize = require("sequelize");
 // const { name } = require("../package.json");
 
 //creation of singleton database
+console.log("DATABASE_URL: ",process.env.DATABASE_URL)
 const db = new Sequelize(process.env.DATABASE_URL);
 
 // process.env.NODE_ENV == "dev"
