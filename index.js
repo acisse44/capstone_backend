@@ -25,14 +25,15 @@ app.use(
     preflightContinue: true,
   })
 );
-
+app.enable('trust proxy');
 app.use(
   session({
     name: "TESTAPP",
     secret: "capstone",
     store: sessionStore,
     resave: false,
-    saveUninitialized: true,
+    proxy: true,
+    saveUninitialized: false,
     cookie: process.env.NODE_ENV == "dev" ? {
       maxAge: 7 * 24 * 60 * 60 * 1000, // The maximum age (in milliseconds) of a valid session.
       secure: false,
