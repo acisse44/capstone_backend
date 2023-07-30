@@ -15,7 +15,7 @@ const db = new Sequelize(process.env.DATABASE_URL);
 
 // }):
 
-const pg = require("pg");
+require("pg");
 
 //make sure this is the singleton you are defining the table on
 module.exports = db;
