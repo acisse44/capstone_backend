@@ -15,8 +15,7 @@ Polyglot Palace is an immersive and engaging platform designed to help users mas
 3. As a user, I want to be able to add friends so that we can help each other learn languages.
 4. As a user, I want to be able to earn rewards for completing certain goals, such as unlocking achievement badges.
 5. As a user, I want to be able to translate any languages I want in the ChatBot.
-6. As a user, I want to be able to organize languages by categories so that I can find the languages that I'm interested in learning.
-7. As a user, I want to be able to view a leaderboard of my friends and other users so that I can see how I'm progressing compared to others.
+6. As a user, I want to be able to view a leaderboard of my friends and other users so that I can see how I'm progressing compared to others.
 
 ### Frontend 
 - React
